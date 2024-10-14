@@ -74,7 +74,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Welcome to Hostel Name</h1>
+            <h1>Welcome to Hostel Name sdfgi</h1>
             <p>Your cozy place to stay</p>
             <a href="#" class="btn btn-primary">Book Now</a>
         </div>
