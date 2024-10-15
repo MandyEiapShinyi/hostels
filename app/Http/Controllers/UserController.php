@@ -35,17 +35,17 @@ class UserController extends Controller
     public function adduser(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
         ]);
     
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
         ]);
     
-        return redirect()->route('login')->with('success', 'User registered successfully!');
+        return redirect('/login')->with('success', 'You have registered successfully!');
     }
     
 }

@@ -4,122 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f8f9fa;
+        }
+        .box {
+            width: 500px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 5px;
+            font-family: sans-serif;
+        }
+        .space {
+            margin: 10px 0;
+            text-align: center;
+        }
+        input {
+            font-size: 15px;
+        }
+        h1 {
+            margin: 10px 0;
+        }
+        button {
+            width: 250px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0f153a; 
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #fcff61;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .clear-button {
+            background-color: #dc3545;
+            color: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .clear-button:hover {
+            background-color: #c82333;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .small-grey-text {
+            font-size: 0.9em;
+            color: #6c757d;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .options {
+            text-align: center;
+        }
+        /* .alert {
+            width: 2000px;
+            text-align: center;
+            margin-bottom: 20px;
+        } */
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Register</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo">
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    <h1>Register</h1>
+    
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    
+    <form method="POST" action="adduser">
+        @csrf
+        <div class="space">
+            <input class="box" type="text" name="name" id="name" placeholder="name" required><br>
+        </div>
 
-        <form action="/adduser" method="POST">
-            @csrf
-            <div class="input-group">
-                <input type="text" id="name" name="name" required placeholder="Name">
-            </div>
-            <div class="input-group">
-                <input type="email" id="email" name="email" required placeholder="Email">
-            </div>
-            <div class="input-group">
-                <input type="password" id="password" name="password" required placeholder="Password">
-            </div>
-            <button type="submit" class="login-btn">Sign Up</button>
-            <p class="options">
-                Already have an account? <a href="/login">Login</a>
-            </p>
-        </form>
-    </div>
+        <div class="space">
+            <input class="box" type="email" name="email" id="email" placeholder="email" required><br>
+        </div>
+
+        <div class="space">
+            <input class="box" type="password" name="password" id="password" placeholder="Password" required><br>
+        </div>
+
+        <div class="space">
+            <button type="submit">Register</button>
+            <button type="reset" class="clear-button">Clear</button>
+        </div>
+        <p class="options">
+            Already have an account? <a href="/login">Login</a>
+        </p>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <span class="small-grey-text" style="margin-top: 50px;">Synergy College</span>
+    <span class="small-grey-text">32 & 34, Jalan Perai Jaya 4, Bandar Perai Jaya, 13600 Perai, Pulau Pinang</span>
+
+    
 </body>
 </html>
-
-<style>
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #eaf7ff;
-}
-
-.login-container {
-    width: 100%;
-    max-width: 350px;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 25px;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.alert {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 90%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
-}
-
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-input[type="password"]::placeholder {
-    color: #bbb;
-}
-
-.login-btn {
-    width: 90%;
-    padding: 12px;
-    background-color: #4a73f3;
-    color: #ffffff;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-}
-
-.login-btn:hover {
-    background-color: #2554ef;
-}
-
-.options {
-    margin-top: 15px;
-    font-size: 13px;
-}
-
-.options a {
-    color: #4a73f3;
-    text
