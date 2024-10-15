@@ -12,8 +12,3 @@ class IndexController extends Controller
 
     // public function 
 }
-@if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
