@@ -13,6 +13,7 @@ class IndexController extends Controller
         return view("index", compact('reviews'));
     }
 
+<<<<<<< HEAD
     public function review(Request $request) 
     {
         $request->validate([
@@ -33,4 +34,7 @@ class IndexController extends Controller
     public function contect() {
         return view('contect');
     }
+=======
+    // public function 
+>>>>>>> origin/admin-panel
 }

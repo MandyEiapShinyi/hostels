@@ -118,10 +118,10 @@
         <h2>Admin Panel</h2>
 
         <a class="tab active" onclick="showTab('home')">
-            <i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-home"></i> Dashboard</a>
 
         <a class="tab" onclick="showTab('admin')">
-            <i class="fas fa-user-shield"></i> Admin</a>
+            <i class="fas fa-user-shield"></i> admin bitch</a>
 
         <a class="tab" onclick="showTab('users')">
             <i class="fas fa-user-graduate"></i> Student</a>
