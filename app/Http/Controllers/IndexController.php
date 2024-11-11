@@ -13,28 +13,28 @@ class IndexController extends Controller
         return view("index", compact('reviews'));
     }
 
-<<<<<<< HEAD
-    public function review(Request $request) 
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
-        ]);
-
-        Review::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'message' => $request->input('message'),
-        ]);
-
-        return redirect()->back()->with('success', 'Review submitted successfully!');
+    public function contact() {
+        return view('contact');
     }
 
-    public function contect() {
-        return view('contect');
+    public function header() {
+        return view('header');
     }
-=======
-    // public function 
->>>>>>> origin/admin-panel
+
+    public function about() {
+        return view('about');
+    }
+
+    public function room() {
+        return view('room');
+    }
+
+    public function reviewroom() {
+        return view('reviewroom');
+    }
+
+    public function stores() {
+        return view('stores');
+    }
+
 }
