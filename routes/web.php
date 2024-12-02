@@ -1,27 +1,33 @@
 <?php
 
 use App\Models\Furniture;
+use App\Http\Middleware\checkauth;
+use App\Http\Middleware\checkuser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FurnitureController;
 use App\Http\Controllers\Auth\AdminController;
-use App\Http\Controllers\AddressController;
-use App\Http\Middleware\checkauth;
+use App\Http\Controllers\StudentFeeController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//register form
-Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::post('/adduser', [UserController::class, 'adduser']);
+// //register form
+// Route::get('/register', [UserController::class, 'register'])->name('register');
+// Route::post('/adduser', [UserController::class, 'adduser']);
 
-//login form
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/user', [UserController::class, 'user']);
+// //login form
+// Route::get('/login', [UserController::class, 'login'])->name('login');
+// Route::post('/user', [UserController::class, 'user']);
 
 //index
 Route::get('/index', [IndexController::class, 'index']);
@@ -40,7 +46,7 @@ Route::get('/adminLogin', [AdminController::class, 'adminLogin'])->name('adminLo
 Route::post('/adminUser', [AdminController::class, 'adminUser']);
 
 //index
-Route::get('/admin_show', [StudentController::class, 'adminPanel'])->name('admin.panel')->middleware(checkauth::class);
+Route::get('/admin_show', [StudentController::class, 'adminPanel'])->name('admin.panel')->middleware(checkauth::class.':admin');
 
 //add student
 Route::get('/addStudent', [StudentController::class, 'showAddForm'])->name('students.add.form');
@@ -92,12 +98,15 @@ Route::get("/countroom/{roomid}",[StudentController::class,'countroom'])->name("
 // logout
 Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
-
 //review
 Route::post('/review', [IndexController::class, 'review']);
 
-//room
+//contact
 Route::get('/contact', [IndexController::class, 'contact']);
+Route::post('/contact', [IndexController::class, 'store'])->name('contact.store');
+
+// Route::get('/contact', [ContactController::class, 'contact'])->name('contact.form');
+// Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/header', [IndexController::class, 'header']);
 
@@ -108,3 +117,57 @@ Route::get('/reviewroom', [IndexController::class, 'reviewroom']);
 Route::get('/room', [IndexController::class, 'room']);
 
 Route::get('/stores', [IndexController::class,'stores']);
+
+
+//profile
+Route::get('/userProfile', [ProfileController::class, 'index'])->middleware(checkuser::class);
+
+//room information
+Route::get('/roomInformation', [ProfileController::class, 'information'])->middleware(checkuser::class);
+
+//hostel fee
+Route::get('/hostelFee', [ProfileController::class, 'hostel'])->middleware(checkuser::class);
+
+Route::get('/serviceReport', [ProfileController::class, 'service'])->middleware(checkuser::class);
+Route::post('/store', [ProfileController::class, 'store'])->name('store');
+
+// upload image
+// Route::post('/uploadAvatar', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
+
+//register form
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/adduser', [UserController::class, 'adduser'])->name('adduser');
+
+//login form
+Route::get('/userlogin', [UserController::class, 'login'])->name('login');
+Route::post('/user', [UserController::class, 'user']);
+
+// Show Change Password form
+Route::get('/profile/changePassword', [ProfileController::class, 'showChangePasswordForm'])->name('showChangePasswordForm');
+Route::get('/sendmail',[ProfileController::class,"sendmail"])->name('sendmail');
+
+// Handle Change Password form submission
+Route::post('/profile/changePassword', [ProfileController::class, 'changePassword'])->name('changePassword');
+
+//sign out
+Route::post('/signOut', [ProfileController::class, 'signOut'])->name('signOut');
+
+//show room
+Route::get('/student/room', [ProfileController::class, 'showRoom'])->name('student.room');
+
+Route::get('/student/profile', [StudentController::class, 'showProfile'])
+    ->name('student.profile');
+
+//upload image
+Route::post('/uploadPayment', [StudentFeeController::class, 'uploadPayment'])->name('upload.payment');
+
+//delete payment receipt
+Route::delete('/payment/{id}', [StudentFeeController::class, 'destroy'])->name('payment.destroy');
+
+
+//reset password
+//search bar
+// Route::get('/search', [StudentController::class, 'search'])->name('search');
+
+//feedback
+// <Route::>

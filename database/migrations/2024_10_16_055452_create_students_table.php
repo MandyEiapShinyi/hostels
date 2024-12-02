@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('address_id');
-            $table->string('student_name');
+            $table->foreignId("address_id")->nullable()->constrained("addresses")->onDelete("set null");
+            $table->foreignId("user_id")->nullable()->constrained("users")->onDelete("set null");
             $table->string('phone_number');
-            $table->string('room_id');
+            $table->string('date');
+            $table->foreignId("room_id")->nullable()->constrained("rooms")->onDelete("set null");
             $table->string('email');
             $table->timestamps();
         });

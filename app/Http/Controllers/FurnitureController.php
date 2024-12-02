@@ -28,7 +28,7 @@ class FurnitureController extends Controller
             'image' => $imagePath ?? null,
         ]);
 
-        return redirect('/admin_show')->with('success', 'Furniture added successfully!');
+        return redirect('/admin_show')->with('success', 'Furniture added successfully!')->with("page","furniture");
     }
 
     public function edit($id)
@@ -54,7 +54,7 @@ class FurnitureController extends Controller
 
         $furniture->save();
 
-        return redirect('/admin_show')->with('success', 'Student updated successfully!');
+        return redirect('/admin_show')->with('success', 'Student updated successfully!')->with("page","furniture");
     }
 
     public function destroy($id)
@@ -62,6 +62,6 @@ class FurnitureController extends Controller
         $furniture = Furniture::findOrFail($id);
         $furniture->delete();
 
-        return redirect('/admin_show')->with('success', 'Furniture deleted successfully!');
+        return redirect('/admin_show')->with('success', 'Furniture deleted successfully!')->with("page","furniture");
     }
 }

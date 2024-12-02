@@ -57,6 +57,7 @@ class AdminController extends Controller
     {
         Auth::logout();
         $request->session()->invalidate();
+        // dd(123);
         $request->session()->regenerateToken();
 
         return redirect('/admin_show');

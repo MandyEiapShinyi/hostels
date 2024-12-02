@@ -14,6 +14,7 @@ class Room extends Model
         'details',
         'person_quantity',
         'furniture',
+        'room_fee',
         'address_id',
     ];
 
@@ -23,7 +24,7 @@ class Room extends Model
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     public function students()

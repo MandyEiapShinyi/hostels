@@ -26,6 +26,7 @@ class RoomController extends Controller
             'details' => 'nullable|string',
             'person_quantity' => 'required|integer',
             'furniture' => 'nullable|array',
+            'room_fee' => 'required',
             'address_id' => 'required|exists:addresses,id',
         ]);
 
@@ -45,7 +46,7 @@ class RoomController extends Controller
         
         Room::create($validatedData);
 
-        return redirect("/admin_show")->with('success', 'Room added successfully!');
+        return redirect("/admin_show")->with('success', 'Room added successfully!')->with("page","data");
     }
 
     public function edit($id)
@@ -61,6 +62,7 @@ class RoomController extends Controller
         $request->validate([
             'room_name' => 'required|string|max:255',
             'furniture' => 'nullable|array',
+            'room_fee' => 'required',
             'person_quantity' => 'required|integer',
             'details' => 'nullable|string',
         ]);
@@ -71,11 +73,12 @@ class RoomController extends Controller
         $rooms->update([
             'room_name' => $request->room_name,
             'furniture' => json_encode($request->furniture),
+            'room_fee' => $request->room_fee,
             'person_quantity' => $request->person_quantity,
             'details' => $request->details,
         ]);
 
-        return redirect('/admin_show')->with('success', 'Room updated successfully.');
+        return redirect('/admin_show')->with('success', 'Room updated successfully.')->with("page","data");
     }
 
     public function delete($id)
@@ -83,6 +86,6 @@ class RoomController extends Controller
         $room = Room::findOrFail($id);
         $room->delete();
 
-        return redirect('/admin_show')->with('success', 'Room deleted successfully.');
+        return redirect('/admin_show')->with('success', 'Room deleted successfully.')->with("page","data");
     }
 }

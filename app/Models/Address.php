@@ -19,4 +19,14 @@ class Address extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function address()
+    {
+        return $this->hasMany(Student::class,"address_id");
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

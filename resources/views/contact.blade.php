@@ -99,32 +99,6 @@
     </div>
   </div>
 
-  <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $subject = htmlspecialchars($_POST['subject']);
-    $message = htmlspecialchars($_POST['message']);
-
-    $to = "info@synergycollege.edu.my";  // Email address
-    $headers = "From: $email" . "\r\n" .
-               "Reply-To: $email" . "\r\n" .
-               "X-Mailer: PHP/" . phpversion();
-
-    $mailSubject = "Contact Form Submission: $subject";
-    $mailBody = "Name: $name\nEmail: $email\n\nMessage:\n$message";
-
-    if (mail($to, $mailSubject, $mailBody, $headers)) {
-        echo "<script>alert('Thank you for reaching out! We will get back to you soon.');</script>";
-        echo "<script>window.location.href = 'contact_page_url_here';</script>";
-    } else {
-        echo "<script>alert('Sorry, something went wrong. Please try again.');</script>";
-    }
-} else {
-    header("Location: contact_page_url_here");
-}
-?>
-
   <div class="contact-page section">
     <div class="container">
       <div class="row">
@@ -133,6 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h6>| Contact Us</h6>
             <h2>Get In Touch With Our Agents</h2>
           </div>
+
+          
           <p>If you're a college student with questions about hostel facilities, roommate arrangements, or campus amenities, feel free to reach out! Our team is here to help you settle in and make the most of your time on campus. Let us know how we can assist you or connect you with resources. We're always happy to hear from you!</p>
           <div class="row">
             <div class="col-lg-12">
@@ -141,6 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h6><a href="tel:016-445 6145" style="color:#11113c;"> 016-445 6145</a><br><span>Phone Number</span></h6>
               </div>
             </div>
+
+
             <div class="col-lg-12">
               <div class="item email">
                 <img src="assets/images/email-icon.png" alt="" style="max-width: 30px;">
@@ -149,41 +127,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
         </div>
+
+
         <div class="col-lg-6">
-          <form id="contact-form" action="" method="post">
+          <form id="contact-form" action="{{ route('contact.store') }}" method="POST">
+            @csrf
             <div class="row">
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="name">Full Name</label>
-                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="email">Email Address</label>
-                  <input type="text" name="email" id="email" pattern="[^ @]@[^ @]" placeholder="Your E-mail..." required="">
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="subject">Subject</label>
-                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
-                </fieldset>
-              </div>
+                <div class="col-lg-12">
+                    <fieldset>
+                        <label for="name">Full Name</label>
+                        <input type="text" name="name" id="name" placeholder="Your Name..." required>
+                    </fieldset>
+                </div>
+                <div class="col-lg-12">
+                    <fieldset>
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="Your E-mail..." required>
+                    </fieldset>
+                </div>
+                <div class="col-lg-12">
+                    <fieldset>
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" id="subject" placeholder="Subject...">
+                    </fieldset>
+                </div>
+                <div class="col-lg-12">
+                    <fieldset>
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                    </fieldset>
+                </div>
+                <div class="col-lg-12">
+                    <fieldset>
+                        <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                    </fieldset>
+                </div>
             </div>
-          </form>
+        </form>
         </div>
+
+
         <div class="col-lg-12">
           <div id="map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9975633731644!2d100.38678787461067!3d5.386474087413709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b15cdbd92f567b%3A0xe2b18c71b51135bc!2s32%20%26%2034%2C%20Jalan%20Perai%20Jaya%204%2C%20Bandar%20Perai%20Jaya%2C%2013600%20Perai%2C%20Pulau%20Pinang!5e0!3m2!1sen!2smy!4v1697988764909!5m2!1sen!2smy" width="100%" height="500px" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen="" loading="lazy"></iframe>

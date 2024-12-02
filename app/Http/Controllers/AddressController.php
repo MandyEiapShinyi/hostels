@@ -28,7 +28,7 @@ class AddressController extends Controller
 
         Address::create($validatedData);
         
-        return redirect("/admin_show")->with('success', 'Address created successfully.');
+        return redirect("/admin_show")->with('success', 'Address created successfully.')->with("page","data");
     }
 
     public function edit($id)
@@ -52,7 +52,7 @@ class AddressController extends Controller
             'room_quantity' => $request->input('room_quantity'),
         ]);
 
-        return redirect("/admin_show")->with('success', 'Address updated successfully.');
+        return redirect("/admin_show")->with('success', 'Address updated successfully.')->with("page","data");
     }
 
     public function destroy($id)
@@ -60,7 +60,7 @@ class AddressController extends Controller
         $address = Address::findOrFail($id);
         $address->delete();
 
-        return redirect("/admin_show")->with('success', 'Address deleted successfully.');
+        return redirect("/admin_show")->with('success', 'Address deleted successfully.')->with("page","data");
     }
 
     public function room(Request $request)
@@ -73,7 +73,7 @@ class AddressController extends Controller
     
         Address::create($request->all());
     
-        return redirect()->back()->with('success', 'Room added successfully');
+        return redirect()->back()->with('success', 'Room added successfully')->with("page","furniture");
     }
 
     // public function getRooms($addressId)

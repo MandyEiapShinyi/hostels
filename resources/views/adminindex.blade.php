@@ -7,11 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     <title>Admin Panel - Manage System</title>
+    
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -21,13 +23,15 @@
 
         .sidebar {
             width: 200px;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            font-size: 16px;
         }
 
         .sidebar h2 {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 20px;
         }
 
@@ -35,28 +39,33 @@
             display: block;
             padding: 10px;
             margin-bottom: 10px;
-            background-color: lightblue;
+            background-color: #11113c;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             text-align: center;
             text-decoration: none;
-            color: black;
+            color: #fff;
+            font-size: 15px;
         }
 
         .tab:hover {
-            background-color: #f7e91d;
+            background-color: #ea232a;
+            text-decoration: none;
+            color: #fff;
         }
 
         .tab.active {
-            background-color: #f9ffab;
-            border-left: 4px solid #333;
+            background-color: #ea232a;
+            /* border-left: 4px solid #333; */
+            text-decoration: none;
+            color: #fff;
         }
 
         .content {
             flex: 1;
             padding: 20px;
-            background-color: white;
+            background-color: #fff;
             overflow-y: auto;
         }
 
@@ -69,30 +78,18 @@
             display: block;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table th, table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
         button {
             padding: 10px 20px;
             margin-top: 10px;
-            background-color: #fcff61;
+            /* background-color: #fcff61; */
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        button:hover {
+        /* button:hover {
             background-color: #f7e91d;
-        }
+        } */
 
         .delete-btn {
             background-color: #dc3545;
@@ -105,6 +102,7 @@
 
         .fontx {
             color: black;
+            font-size: 16px;
         }
 
         .small-grey-text {
@@ -114,7 +112,6 @@
             text-align: center
         }
 
-        /* Modal container */
         .modal {
             display: none;
             position: fixed;
@@ -126,7 +123,6 @@
             z-index: 9999;
         }
 
-        /* Modal content (remove the margin) */
         .modal-content {
             background-color: #fff;
             padding: 20px;
@@ -144,47 +140,177 @@
         .btn-submit {
             background-color: #00204a;
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            /* padding: 10px 20px; */
+            border-radius: 15px;
             text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-action {
+            background-color: #4c93ff;
+            color: white;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-delete {
+            background-color: #ff60aa;
+            color: white;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 0px;
         }
 
         .btn-submit:hover {
-            background-color: yellow;
-            color: black;
+            background-color: #11113c;
+            color: rgb(255, 255, 255);
         }
+        .title1 {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .dash-box {
+            padding: 20px;
+            background-color: #4f6d7a;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .dash-box2 {
+            padding: 20px;
+            background-color: #5a8e7b;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .dash-box3 {
+            padding: 20px;
+            background-color: #a3c1ad;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .dash-box4 {
+            padding: 20px;
+            background-color: #f8d49d;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+         }
+         th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #74a4b0;
+            color: white;
+        }
+        .form-section, .table-section {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         }
+        .form-section h2, .table-section h2 {
+            color: #11113c;
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .graph-container {
+            margin-top: 30px; 
+            background-color: #fff; 
+            padding: 25px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"
+            width: 600px;
+        }
+        .admin-back {
+            background-color: #fff;
+            /* border-left: 8px solid #007bff; */
+            /* padding: 15px 20px; */
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* margin: 20px 0; */
+            text-align: center;
+        }
+        .admin-title-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
         
     </style>
 </head>
 <body>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <!-- Sidebar -->
     <div class="sidebar">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo" style="width: 100%; margin-bottom: 20px;">
         <span class="small-grey-text">Welcome, Administrator</span>
         <h2>Admin Panel</h2>
+    
+        <a class="tab active" id="tabhome" onclick="showTab('home')">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+    
+        <a class="tab" id="tabusers" onclick="showTab('users')">
+            <i class="fas fa-user-graduate"></i> Student
+        </a>
+    
+        <a class="tab" id="tabdata" onclick="showTab('data')" onclick="refreshSection('address')">
+            <i class="fas fa-bed"></i> Room
+        </a>
+    
+        <a class="tab" id="tabfurniture" onclick="showTab('furniture')">
+            <i class="fa-solid fa-couch"></i> Furniture
+        </a>
+    
+        <a class="tab" id="tabfeedback" onclick="showTab('feedback')">
+            <i class="fas fa-comments"></i> Service Report
+        </a>
+    
+        <a class="tab" id="tabFees" onclick="showTab('fees')">
+            <i class="fa-solid fa-money-check"></i> Fees
+        </a>
 
-        <a class="tab active" onclick="showTab('home')">
-            <i class="fas fa-home"></i> Dashboard</a>
-
-        <a class="tab" onclick="showTab('users')">
-            <i class="fas fa-user-graduate"></i> Student</a>
-
-        <a class="tab" onclick="showTab('data')">
-            <i class="fas fa-bed"></i> Room</a>
-
-        <a class="tab" onclick="showTab('furniture')">
-            <i class="fa-solid fa-couch"></i> Furniture</a>
-
-        <a class="tab" onclick="showTab('feedback')">
-            <i class="fas fa-comments"></i> Feedback</a>
-        
-        <a class="tab" onclick="showTab('settings')">
-            <i class="fas fa-cog"></i> Settings</a>
-
-        <a class="tab" onclick="showTab('signOut')">
-            <i class="fas fa-sign-out-alt"></i> Sign Out</a>
+        <a class="tab" id="tabhistory" onclick="showTab('history')">
+            <i class="fa fa-history" aria-hidden="true"></i> History
+        </a>
+    
+        <a class="tab" id="tabsignOut" onclick="showTab('signOut')">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </a>
     </div>
+    
 
     <!-- Main Content -->
     <div class="content">
@@ -197,19 +323,19 @@
 
             <!-- Dashboard Overview Cards -->
             <div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px;">
-                <div style="background-color: #fcff61; padding: 20px; border-radius: 10px; flex: 1; text-align: center;">
+                <div class="dash-box">
                     <h3>Total Rooms</h3>
                     <p style="font-size: 30px;">{{ $totalRooms}}</p>
                 </div>
-                <div style="background-color: #ffecb3; padding: 20px; border-radius: 10px; flex: 1; text-align: center;">
+                <div class="dash-box2">
                     <h3>Available Rooms</h3>
                     <p style="font-size: 30px;">{{ $totalPersonQuantity }}</p>
                 </div>
-                <div style="background-color: #c3f4ff; padding: 20px; border-radius: 10px; flex: 1; text-align: center;">
-                    <h3>Pending Requests</h3>
-                    <p style="font-size: 30px;">15</p>
+                <div class="dash-box3">
+                    <h3>Service Report</h3>
+                    <p style="font-size: 30px;">{{ $service }}</p>
                 </div>
-                <div style="background-color: #ffb3b3; padding: 20px; border-radius: 10px; flex: 1; text-align: center;">
+                <div class="dash-box4">
                     <h3>Total Students</h3>
                     <p style="font-size: 30px;">{{ $totalStudents ?? 0 }}</p>
                 </div>
@@ -222,25 +348,34 @@
                     <canvas id="roomAllocationChart" style="max-width: 1200px; max-height: 500px;"></canvas>
                 </div>                
             </div>
-            
 
-            {{-- <!-- Tasks Progress -->
-            <div style="margin-top: 40px; display: flex; justify-content: space-between;">
-                <div style="flex: 1; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
-                    <h3 class="fontx">Tasks</h3>
-                    <div style="display: flex; justify-content: center; align-items: center; height: 150px;">
-                        <div style="position: relative; width: 100px; height: 100px; background-color: #f4f4f4; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-                            <span style="font-size: 25px;">70%</span>
-                        </div>
-                    </div>
+            {{-- <!-- Room Reports -->
+            <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                <div style="background-color: #f8f8f8; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+                    <h3>Reports of this month</h3>
+                    <p style="font-size: 24px; color: #FF4C4C;">50</p>
                 </div>
-            </div> --}}
-        </div>
+                <div style="background-color: #f8f8f8; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+                    <h3>Total Fees Collected</h3>
+                    <p style="font-size: 24px; color: #28a745;">₹ 1,20,345</p>
+                </div>
+            </div>--}}
+        </div> 
 
         <!-- Manage Users Section -->
         <div id="users" class="tab-content">
             <h2 class="fontx">Address</h2>
             <p>Choose Address To Add A New Student</p>
+
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
 
             @if (session('success'))
                 <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
@@ -280,8 +415,17 @@
                             <input type="hidden" name="address_id" id="address_id" value="">
 
                             <div class="mb-3">
-                                <label for="student_name" class="form-label">Student Name</label>
-                                <input type="text" class="form-control" id="student_name" name="student_name" placeholder="Student Name" required>
+                                <label for="user_id" class="form-label">Student</label>
+                                <select class="form-control" id="user_id" name="user_id" required>
+                                    @if($users->isEmpty())
+                                        <option value="">No Users Available</option>
+                                    @else
+                                        <option value="">Select a Student</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                             </div>
                         
                             <div class="mb-3">
@@ -293,6 +437,11 @@
                                 <label for="emails" class="form-label">Email</label>
                                 <input class="form-control" id="email" name="email" placeholder="Email" required/>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required />
+                            </div>                            
                         
                             <div class="mb-3">
                                 <label for="room_id" class="form-label">Room</label>
@@ -319,6 +468,16 @@
         </div>
 
         <h2 class="fontx">Manage Student</h2>
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
             
             <table class="table table-bordered">
                 <tr>
@@ -328,6 +487,7 @@
                     <th>Student Name</th>
                     <th>Phone Number</th>
                     <th>Email</th>
+                    <th>Date</th>
                     <th>Actions</th>
                 </tr>
                 @foreach ($students as $student)
@@ -335,9 +495,10 @@
                     <td>{{ $student->id }}</td>
                     <td>{{ $student->address_id }}</td>
                     <td>{{ $student->room->room_name ?? 'N/A' }}</td>
-                    <td>{{ $student->student_name }}</td>
+                    <td>{{ $student->user->name }}</td>
                     <td>{{ $student->phone_number }}</td>
                     <td>{{ $student->email }}</td>
+                    <td>{{ $student->date }}</td>
                     <td>
                     <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
                         @csrf
@@ -355,6 +516,16 @@
         <div id="data" class="tab-content">
             <a href="/addresses/create" class="btn btn-submit">Add Address</a>
             <h2 class="fontx">Manage Address</h2>
+
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -416,6 +587,11 @@
                                         </div>
                                     @endforeach
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="room_fee" class="form-label">Room Fee</label>
+                                    <input type="number" class="form-control" id="room_fee" min="1" name="room_fee" placeholder="Room Fee" required>
+                                </div>
                             
                                 <div class="mb-3">
                                     <label for="person_quantity" class="form-label">Person Quantity</label>
@@ -444,6 +620,7 @@
                             <th>Address ID</th>
                             <th>Room Name</th>
                             <th>Furniture</th>
+                            <th>Room Fee</th>
                             <th>Person Quantity</th>
                             <th>Details</th>
                             <th>Actions</th>
@@ -461,6 +638,7 @@
                                 
                                 @endforeach
                                 </td>
+                                <td>{{ $room->room_fee }}</td>
                                 <td>{{ $room->person_quantity }}</td>
                                 <td>{{ $room->details }}</td>
                                 <td>
@@ -482,6 +660,16 @@
         <div id="furniture" class="tab-content">
             <h2 class="fontx">Furniture</h2>
             <a href="/addFurniture">Add Furniture</a>
+
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             <table>
                 <tr>
                     <th>ID</th>
@@ -510,11 +698,177 @@
             </table>
         </div>
 
-        <!-- Settings Section -->
-        <div id="settings" class="tab-content">
-            <h2 class="fontx">Settings</h2>
-            <p>System-wide settings can be managed here.</p>
+        <!-- FeedBack Section -->
+        <div id="feedback" class="tab-content">
+            <h2 class="fontx">Service Report</h2>
+            <p>Furniture Repair</p>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Address</th>
+                    <th>Room Name</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                </tr>
+                
+                @foreach ($serviceReports as $serviceReport)
+                <tr>
+                    <td>{{ $serviceReport->id }}</td>
+                    <td>{{ $serviceReport->user->name }}</td>
+                    <td>{{ $serviceReport->user && $serviceReport->user->student ? $serviceReport->user->student->address->address : 'No Address Assigned' }}</td>
+                    <td>{{ $serviceReport->user->student->room->room_name }}</td>
+                    <td>{{ $serviceReport->subject}}</td>
+                    <td>{{ $serviceReport->message }}</td>
+                </tr>
+                @endforeach
+            </table>
 
+        </div>
+   
+
+        <!-- Fees Section -->
+        <div id="fees" class="tab-content">
+            <h2 class="fontx">Student Fees</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>Address</th>
+                        <th>Room Name</th>
+                        <th>Phone Number</th>
+                        <th>Total Fee</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($studentFees as $student)
+                    <tr>
+                        <td>{{ $student->id }}</td>
+                        <td>{{ $student->user->name }}</td>
+                        <td>{{ $student->address->address }} {{ $student->address->address_name }}</td>
+                        <td>{{ $student->room->room_name ?? 'N/A' }}</td>
+                        <td>{{ $student->phone_number }}</td>
+                        <td>{{ $student->room->room_fee ?? 'N/A' }}</td>
+                        <td>{{ $student->date }}</td>
+                        <td>
+                            @if($student->is_due)
+                                <span style="color: red; font-weight: bold;">Due</span>
+                            @else
+                                <span style="color: green;">Not Due</span>
+                            @endif
+                        </td>
+                        <td>
+                            {{-- Show the "Pay" button only if the fee is due --}}
+                            @if($student->is_due)
+                                <button type="button" class="pay-button" 
+                                        data-toggle="modal" data-target="#paymentModal" 
+                                        data-id="{{ $student->user_id }}" value="{{$student->user_id}}">
+                                    Pay
+                                </button>
+                            @endif
+                        </td>
+                        
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        
+
+        <!-- Modal for Image Upload -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadModalLabel">Upload Payment Proof</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('upload.payment') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="image">Upload Image</label>
+                                <input type="file" class="form-control-file" id="image" name="image" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date">Payment Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+
+                            <input type="hidden" id="userId" name="user_id">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History -->
+        <div id="history" class="tab-content">
+            {{-- <form action="{{ route('admin.panel') }}" method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ request('name') }}">
+                    
+                    <input type="date" name="date" class="form-control" value="{{ request('date') }}">
+                    
+                    <div class="input-group-append">
+                        <button class="btn btn-warning" type="submit">Search</button>
+                    </div>
+                </div>
+            </form> --}}
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            
+
+            <table id="example" class="table table-bordered mt-3">
+                <thead>
+                    <th>Name</th>
+                    <th>Payment Receipt</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </thead>
+                
+                <tbody>
+                @forelse ($paymentReceipts as $paymentReceipt)
+                <tr>
+                    
+                    <td>{{ $paymentReceipt->user->name }}</td>
+                    <td>
+                        @if (Str::endsWith($paymentReceipt->image, '.pdf'))
+                            <a href="{{ asset('storage/' . $paymentReceipt->image) }}" target="_blank">View PDF</a>
+                        @else
+                            <a href="{{ asset('storage/' . $paymentReceipt->image) }}" target="_blank">View Image</a>
+                        @endif
+                    </td>
+                    <td>{{ $paymentReceipt->date }}</td>
+                    <td>
+                        <form action="{{ route('payment.destroy', $paymentReceipt->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this payment?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="3">No payments found.</td>
+                </tr>
+                @endforelse
+            </tbody>
+            </table>
+            
         </div>
 
         <!-- Sign Out -->
@@ -535,6 +889,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     function showTab(tabId) {
+
         const tabs = document.querySelectorAll('.tab-content');
         const tabLinks = document.querySelectorAll('.tab');
 
@@ -546,9 +901,30 @@
             link.classList.remove('active');
         });
 
+
         document.getElementById(tabId).classList.add('active');
         document.querySelector(`.tab[onclick*="${tabId}"]`).classList.add('active');
         }
+
+    function aftersubmitshowcurrecttab(){
+        const tabs = document.querySelectorAll('.tab-content');
+        const tabLinks = document.querySelectorAll('.tab');
+
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        let page = "{{ session()->has('page') ? session('page') : 'home' }}";
+        document.querySelector(`#tab${page}`).classList.add("active");
+        document.querySelector(`#${page}`).classList.add('active');
+
+    }
+
+    aftersubmitshowcurrecttab()
+    
 </script>
 
 <script>
@@ -683,6 +1059,20 @@
 
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('.pay-button').on('click', function() {
+            // Get the student's ID from the table row
+            var studentId = $(this).val();
+            
+            // Set the student ID in the hidden input of the modal form
+            $('#userId').val(studentId);
+
+            $("#uploadModal").modal("show");
+        });
+    });
+</script>
 <script>
     function confirmLogout() {
         return confirm("Are you sure you want to sign out?");
@@ -698,14 +1088,9 @@
                 label: 'Room Allocation',
                 data: [{{ $totalRooms }}, {{ $totalStudents ?? 0 }}, {{ $totalPersonQuantity }}],
                 backgroundColor: [
-                    '#FFFF99',
-                    '#FF9999',
-                    '#FFEB99'
-                ],
-                borderColor: [
-                    '#F7E277',
-                    '#F38C8C',
-                    '#F8DC77'
+                    '#f8d49d',
+                    '#4f6d7a',
+                    '#5a8e7b'
                 ],
                 borderWidth: 1
             }]
@@ -719,5 +1104,66 @@
         }
     });
 </script>
+
+<script>
+    function refreshSection(sectionId) {
+    $.ajax({
+        url: '/getUpdatedAddressData', // URL to fetch the data
+        type: 'GET',
+        success: function(data) {
+            // Replace the content of the section with the new data
+            $('#' + sectionId + ' tbody').html(data);
+        },
+        error: function() {
+            alert('Failed to refresh the section.');
+        }
+    });
+}
+</script>
+
+<script>
+    function toggleDropdown() {
+    var dropdown = document.getElementById("feesDropdown");
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
+}
+
+// Close dropdown if clicked outside
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}
+</script>
+
+<script>
+    // When the "Pay" button is clicked, set the student ID in the hidden field of the modal
+    $('#paymentModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var studentId = button.data('id'); // Extract student ID from data-id attribute
+
+        var modal = $(this);
+        modal.find('#student_id').val(studentId); // Set the student ID in the hidden input field
+    });
+</script>
+
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+new DataTable('#example');
+</script>
+
 </body>
 </html>

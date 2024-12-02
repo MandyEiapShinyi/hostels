@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -16,11 +18,11 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/index')->with('success', 'Login successful!');
+            return redirect()->intended('/userProfile')->with('success', 'Login successful!');
         }
 
         return back()->withErrors([
@@ -35,17 +37,49 @@ class UserController extends Controller
     public function adduser(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
+            // 'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+            'phone_number' => 'required|numeric',
+            // 'role' => 'required'
         ]);
     
-        $user = User::create([
+        // Create a new user
+        User::create([
             'name' => $request->input('name'),
+            // 'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'password' => Hash::make($request->input('password')),
+            'phone_number' => $request->input('phone_number'),
+            'role' => 'user',
         ]);
+        
     
         return redirect('/login')->with('success', 'You have registered successfully!');
     }
+
+    // public function uploadAvatar(Request $request)
+    // {
+    //     $request->validate([
+    //         'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    //     ]);
+
+    //     $user = Auth::user();
+
+    //     // Delete the old avatar if it exists
+    //     if ($user->avatar) {
+    //         Storage::delete('public/avatars/' . $user->avatar);
+    //     }
+
+    //     // Store the new avatar
+    //     $avatarName = $user->id . '_avatar' . time() . '.' . $request->avatar->extension();
+    //     $request->avatar->storeAs('public/avatars', $avatarName);
+
+    //     // Update user record
+    //     $user->avatar = $avatarName;
+    //     $user->save();
+
+    //     return redirect()->back()->with('success', 'Avatar uploaded successfully.');
+    // }
     
 }

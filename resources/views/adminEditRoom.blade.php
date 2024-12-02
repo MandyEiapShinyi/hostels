@@ -114,6 +114,11 @@
                         @endforeach
                     </div>
                 </div>
+
+                <div class="mb-3">
+                    <label for="room_fee" class="form-label">Room Fee</label>
+                    <input type="number" class="form-control" id="room_fee" name="room_fee" value="{{ $rooms->room_fee }}" required>
+                </div>
                 
                 <div class="mb-3">
                     <label for="person_quantity" class="form-label">Person Quantity</label>

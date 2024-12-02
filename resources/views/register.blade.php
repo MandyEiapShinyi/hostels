@@ -12,8 +12,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
+            margin-top: 40px;
             font-family: sans-serif;
             background-color: #f8f9fa;
         }
@@ -69,17 +69,23 @@
         .options {
             text-align: center;
         }
-        /* .alert {
-            width: 2000px;
-            text-align: center;
-            margin-bottom: 20px;
-        } */
     </style>
 </head>
 <body>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo">
 
     <h1>Register</h1>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -90,23 +96,60 @@
         </div>
     @endif
     
-    <form method="POST" action="adduser">
+    <form method="POST" action="{{ route('adduser') }}">
         @csrf
         <div class="space">
-            <input class="box" type="text" name="name" id="name" placeholder="name" required><br>
+            <input class="box" type="text" name="name" id="name" placeholder="Full Name" required><br>
         </div>
+
+        @error('name')
+            {{ $message }}
+        @enderror
+        
+        {{-- <div class="space">
+            <input class="box" type="text" name="last_name" id="last_name" placeholder="Last Name" required><br>
+        </div>
+
+        @error('last_name')
+            {{ $message }}
+        @enderror --}}
 
         <div class="space">
-            <input class="box" type="email" name="email" id="email" placeholder="email" required><br>
+            <input class="box" type="email" name="email" id="email" placeholder="Email" required><br>
         </div>
 
+        @error('email')
+            {{ $message }}
+        @enderror
+         
         <div class="space">
             <input class="box" type="password" name="password" id="password" placeholder="Password" required><br>
         </div>
 
+        @error('password')
+            {{ $message }}
+        @enderror
+
+        <div class="space">
+            <input class="box" type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required><br>
+        </div>
+
+        @error('password_confirmation')
+            {{ $message }}
+        @enderror
+
+        <div class="space">
+            <input class="box" type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required><br>
+        </div>
+
+        @error('phone_number')
+            {{ $message }}
+        @enderror
+
+        <input type="hidden" name="role" value="user">
+        
         <div class="space">
             <button type="submit">Register</button>
-            <button type="reset" class="clear-button">Clear</button>
         </div>
         <p class="options">
             Already have an account? <a href="/login">Login</a>
@@ -114,10 +157,9 @@
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <span class="small-grey-text" style="margin-top: 50px;">Synergy College</span>
     <span class="small-grey-text">32 & 34, Jalan Perai Jaya 4, Bandar Perai Jaya, 13600 Perai, Pulau Pinang</span>
 
-    
 </body>
 </html>
