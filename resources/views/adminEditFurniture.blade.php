@@ -1,72 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Furniture</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
         }
-
         .custom-card {
-            max-width: 600px;
+            max-width: 750px;
             margin: auto;
-            margin-top: 50px;
-            border-radius: 10px;
+            margin-top: 80px;
+            background: linear-gradient(145deg, #5b6ec4, #110f47);
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px 50px;
         }
-
         .card-header {
-            background-color: #00204a;
+            background: transparent;
             color: white;
             text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            padding-bottom: 30px;
+        }
+        .form-control {
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdcdc;
+            transition: all 0.3s ease;
         }
 
+        .form-control:focus {
+            border-color: #7588f0;
+            box-shadow: 0 0 10px rgba(117, 136, 240, 0.4);
+        }
         .btn-submit {
-            background-color: #00204a;
+            background-color: #ea232a;
             color: white;
+            font-weight: 500;
+            padding: 14px 28px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
         }
-
         .btn-submit:hover {
-            background-color: yellow;
-            color: black;
-        }
-
-        .btn-secondary {
-            background-color: #d9534f;
+            background-color: #ea232a;
+            transform: translateY(-3px);
             color: white;
         }
-
+        .btn-secondary {
+            background-color: #7588f0;
+            color: white;
+            font-weight: 500;
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
         .btn-secondary:hover {
-            background-color: #c9302c;
+            background-color: #ff4d4d;
+            transform: translateY(-3px);
         }
-
-        .form-label {
-            font-weight: bold;
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #842029;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            margin-bottom: 25px;
         }
-
-        .image-preview {
-            text-align: center;
-            margin-top: 10px;
+        .d-flex {
+            gap: 15px;
         }
-
         img {
             border-radius: 5px;
             margin-top: 10px;
         }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #6c757d;
+        .form-label {
+            color: white;
         }
     </style>
 </head>
-
 <body>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -103,7 +129,7 @@
                     <!-- Show current image if exists -->
                     @if($furnitures->image)
                     <div class="image-preview">
-                        <label>Current Image:</label><br>
+                        <label class="form-label">Current Image:</label><br>
                         <img src="{{ asset('storage/' . $furnitures->image) }}" alt="Furniture Image" width="150">
                     </div>
                     @endif
@@ -111,17 +137,12 @@
                     <!-- Submit and Back Buttons -->
                     <div class="d-flex justify-content-between mt-4">
                         <button type="submit" class="btn btn-submit">Update Furniture</button>
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url('/admin_show') }}';">Cancel</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url('/admin_show') }}';">Back To Index</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="footer">
-        <p>Synergy College</p>
-        <p>32 & 34, Jalan Perai Jaya 4, Bandar Perai Jaya, 13600 Perai, Pulau Pinang</p>
-    </div>
 </body>
-
 </html>

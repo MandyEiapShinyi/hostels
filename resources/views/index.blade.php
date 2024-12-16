@@ -1,12 +1,19 @@
 @include('header')
+      @if(session('success'))
+      <div id="custom-alert" class="green-alert" role="alert">
+          {{ session('success') }}
+          <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
+      </div>
+      @endif
+
 
   <div class="main-banner">
     <div class="owl-carousel owl-banner">
       <div class="item item-1">
         <div class="header-text">
           <span class="category">SYNERGY, <em>COLLEGE</em></span>
-          <h2>Affordable, <br> Simple & Comfortable Hostel Living</h2>
-          <a class="buttonx" href="/room">View Room</a>
+          <h2 style="rgba(0,0,0,1.0)">Affordable, <br> Simple & Comfortable Hostel Living</h2>
+          <a class="buttonx" href="/contact">Book Now</a>
         </div>
       </div>
     </div>
@@ -81,56 +88,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room1.jpg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 1</span>
-            <h6>Rm 150</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room1')">Visit</button>
+        @foreach($rooms as $room)
+            <div class="col-lg-4 col-md-6">
+                <div class="item">
+                    <!-- Display room image -->
+                    <img src="{{ asset('storage/' . $room->image) }}" class="imgsize" alt="{{ $room->room_name }}">
+
+                    <!-- Display room name or category -->
+                    <span class="category">{{ $room->room_name }}</span>
+    
+                    <!-- Display room fee -->
+                    <h6>Rm {{ $room->room_fee }}</h6><br><br>
+    
+                    <div>
+                        <!-- Button to open the modal -->
+                        <button class="room-button" onclick="openModal('{{ $room->id }}')">Visit</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room2.jpeg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 2</span>
-            <h6>Rm 200</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room2')">Visit</button>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room3.jpeg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 3</span>
-            <h6>Rm 150</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room3')">Visit</button>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room4.jpeg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 4</span>
-            <h6>Rm 200</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room4')">Visit</button>
-            </div>
-          </div>
-        </div>
-          <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room5.jpeg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 5</span>
-            <h6>Rm 200</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room5')">Visit</button>
-            </div>
-          </div>
-        </div>
+        @endforeach
+    </div>
           {{-- <div class="col-lg-4 col-md-6">
           <div class="item">
             <img src="assets/images/room6.jpeg" class="imgsize" alt=""></a>
@@ -248,7 +225,7 @@ document.getElementById('imageModal').onclick = function(event) {
 <section id="reviews-and-testimonials" style="background-color: ; margin-bottom: -50px;" class="py-5 d-flex justify-content-center align-items-start scroll-trigger">
   
   <!-- Review Section -->
-  <div id="review" class="custom-border-box mr-4 scroll-trigger">
+  <div id="reviewForm" class="custom-border-box mr-4 scroll-trigger">
     <h2 class="text-center mb-4 text-white animate-slideup">Leave a Review</h2>
     <form action="/review" method="POST">
         @csrf
@@ -256,13 +233,22 @@ document.getElementById('imageModal').onclick = function(event) {
             <div class="col-md-12 mb-3">
                 <input type="text" name="name" class="form-control custom-input" placeholder="Your Name" required>
             </div>
+            @error('name')
+            {{$message}}
+            @enderror
             <div class="col-md-12 mb-3">
                 <input type="email" name="email" class="form-control custom-input" placeholder="Your Email" required>
             </div>
+            @error('email')
+            {{$message}}
+            @enderror
         </div>
         <div class="mb-3">
             <textarea name="message" class="form-control custom-input" rows="5" placeholder="Your Message" required></textarea>
         </div>
+        @error('message')
+            {{$message}}
+            @enderror
         <div class="text-center">
            <button type="submit" class="buttonx">Send Message</button>
         </div>
@@ -270,32 +256,93 @@ document.getElementById('imageModal').onclick = function(event) {
   </div>
 
   <!-- Testimonials Section -->
-  <div id="guestssay" class="custom-review-box scroll-trigger">
+  <div id="guestsay" class="custom-review-box scroll-trigger">
     <h2 class="text-center mb-4" style="color:#fff;">What Our Guests Say</h2>
-    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            @foreach ($reviews as $key => $review)
-                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                    <div class="testimonial-box text-center">
-                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+    <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+      <div class="carousel-inner">
+          @foreach ($reviews as $key => $review)
+              <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                  <div class="testimonial-box text-center">
+                    <div id="review-{{ $key }}">
+                      <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                      <div class="testimonial-content">
                         <p class="testimonial-text">"{{ $review->message }}"</p>
                         <em class="testimonial-author">- Guest {{ $key + 1 }}</em>
+                      </div>
                     </div>
-                </div>
-            @endforeach
+                  </div>
+              </div>
+          @endforeach
         </div>
-        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </a>
-        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </a>
     </div>
-    @if(session('success'))
-        <div class="alert alert-success mt-4">{{ session('success') }}</div>
-    @endif
-  </div>
+    <div>
+        <a class="carousel-control-prev" href="#reviewCarousel" role="button" data-bs-slide="prev"></a>
+        <a class="carousel-control-next" href="#reviewCarousel" role="button" data-bs-slide="next"></a>
+    </div>
+</div>
 </section>
+
+<style>
+        .carousel-inner {
+            transform: none;
+        }
+
+        .carousel-item {
+            transform: none !important;
+        }
+
+        .testimonial-content {
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Slide in both text and author when the carousel item is active */
+        .carousel-item.active .testimonial-content {
+            transform: translateX(0);
+        }
+
+        .green-alert {
+            background-color: #b7e0b8;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: fixed;
+            top: 60;
+            transform: translateY(20px);
+            right: 20px;
+            z-index: 999999;
+            width: 350px;
+
+        }
+
+        .close-alert-btn {
+            background-color: transparent; /* No background */
+            border: none; /* No border */
+            color: black; /* White 'X' */
+            font-size: 16px; /* Slightly larger 'X' */
+            position: absolute; /* Position the button at the top-right */
+            /* top: -4px; */
+            right: 15px;
+            cursor: pointer; /* Pointer cursor for the button */
+        }
+
+        .close-alert-btn:hover {
+            color:; /* Lighten the color on hover */
+        }
+
+        .imgsize {
+          border-radius: 10px;
+          width: 240px;
+          height: 200px;
+          transition: transform 0.3s ease-in-out;
+        }
+        .item:hover .imgsize {
+          transform: scale(1.1);
+        }
+</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -317,10 +364,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     };
+
     setTimeout(() => {
         const reviewSection = document.getElementById('review');
         reviewSection.classList.add("animate-fade");
-    }, 60000);
+    }, 4000);
 
     window.addEventListener("scroll", () => {
         handleScrollAnimation();
@@ -363,4 +411,22 @@ function initScrollAnimations() {
     observer.observe(element);
   });
 }
+</script>
+
+<script>
+  function closeAlert() {
+      document.getElementById('custom-alert').style.display = 'none';
+  }
+</script>
+<script>
+  window.onload = function() {
+    const alert = document.querySelector('.green-alert'); // Target the green alert element
+
+    if (alert) {
+        setTimeout(function() {
+            alert.style.display = 'none'; // Hide the alert after 4 seconds
+        }, 4000); // 4 seconds in milliseconds
+    }
+}
+
 </script>

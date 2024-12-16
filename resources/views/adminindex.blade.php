@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
     
     <title>Admin Panel - Manage System</title>
     
@@ -117,17 +118,22 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 100%;
+            width: 110%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 9999;
+            border-radius: 30px;
         }
 
         .modal-content {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
+            background: linear-gradient(145deg, #5b6ec4, #110f47);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
         }
 
         .close {
@@ -257,24 +263,260 @@
             letter-spacing: 1px;
         }
 
+        .modal-title {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
 
+        }
+
+        .btn-add {
+            background-color: #ea232a;
+            color: white;
+            font-weight: 300;
+            padding: 14px 28px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            width: 60%;
+            transition: all 0.3s ease;
+            /* text-align: center; */
+            margin-right: 90px;
+        }
+        .btn-add:hover {
+            background-color: #ea232a;
+            transform: translateY(-3px);
+            color: white;
+        }
+        .input {
+            font-size: 10px;
+        }
+
+        .register {
+            background: linear-gradient(145deg, #5b6ec4, #110f47);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            height: 580px;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-controll {
+            border-radius: 12px;
+            padding: 9px;
+            font-size: 16px;
+            width: 400px;
+            border: 1px solid #dcdcdc;
+            transition: all 0.3s ease;
+        }
+
+        .form-controll:focus {
+            border-color: #7588f0;
+            box-shadow: 0 0 10px rgba(117, 136, 240, 0.4);
+        }
+
+        .btn-register {
+            background-color: #ea232a;
+            color: white;
+            font-weight: 500;
+            padding: 14px 28px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            width: 60%;
+            transition: all 0.3s ease;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 9px;
+            font-size: 16px;
+            width: 400px;
+            border: 1px solid #dcdcdc;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #7588f0;
+            box-shadow:0 0 10px rgba(117,136,240,0.4);
+        }
+
+        .room_delete {
+            background-color: #ff60aa;
+            color: white;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 0px;
+        }
+
+        .room_edit {
+            background-color: #4c93ff;
+            color: white;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .edit_a {
+            color: white;
+        }
+
+        .admin-back {
+            background-color: #fff;
+            /* border-left: 8px solid #007bff; */
+            /* padding: 15px 20px; */
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* margin: 20px 0; */
+            text-align: center;
+        }
+        .admin-title-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .admin-header {
+            background-color: #fffdfd;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .admin-title-textt {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .green-alert {
+            background-color: #b7e0b8; /* Green background */
+            color: white; /* White text */
+            padding: 15px;
+            border-radius: 5px; /* Rounded corners */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+            position: relative;
+            height: 50px;
+            max-width: 400px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .red-alert {
+            background-color: #cb8686; /* Red background */
+            color: white; /* White text */
+            padding: 15px;
+            border-radius: 5px; /* Rounded corners */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            height: 50px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close-alert-btn {
+            background-color: transparent; /* No background */
+            border: none; /* No border */
+            color: white; /* White 'X' */
+            font-size: 16px; /* Slightly larger 'X' */
+            position: absolute; /* Position the button at the top-right */
+            top: -4px;
+            right: 15px;
+            cursor: pointer; /* Pointer cursor for the button */
+        }
+
+        .close-alert-btn:hover {
+            color:; /* Lighten the color on hover */
+        }
+
+        input["type='search'"]{
+            border: 2px solid black;
+        }
+
+        .custom-modal {
+            border-radius: 15px;
+            background-color: #3449f8; /* Deep blue background */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-header {
+            border-bottom: none;
+            text-align: center;
+        }
+
+        h1.modal-title {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .custom-input {
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fff; /* White input field */
+        }
+
+        .btn-close {
+            background-color: #fff; /* Close button */
+            border-radius: 50%;
+        }
+
+        .custom-btn-submit {
+            background-color: #ff4d4d; /* Red submit button */
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-right: 10px;
+        }
+
+        .custom-btn-back {
+            background-color: #9984ff; /* Light blue back button */
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+        }
+
+        .text-white {
+            color: white; /* White text for labels */
+        }
+
+        .form-controlle {
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdcdc;
+            transition: all 0.3s ease;
+        }
+        .form-controlle:focus {
+            border-color: #7588f0;
+            box-shadow: 0 0 10px rgba(117, 136, 240, 0.4);
+        }
         
     </style>
 </head>
 <body>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo" style="width: 100%; margin-bottom: 20px;">
+            <img onclick="location.reload();" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo" style="width: 100%; margin-bottom: 20px;">
+        <br>
         <span class="small-grey-text">Welcome, Administrator</span>
         <h2>Admin Panel</h2>
     
@@ -292,6 +534,10 @@
     
         <a class="tab" id="tabfurniture" onclick="showTab('furniture')">
             <i class="fa-solid fa-couch"></i> Furniture
+        </a>
+
+        <a class="tab" id="tabregisterstudent" onclick="showTab('registerstudent')">
+            <i class="fa fa-registered" aria-hidden="true"></i> Register Student
         </a>
     
         <a class="tab" id="tabfeedback" onclick="showTab('feedback')">
@@ -313,8 +559,8 @@
     
 
     <!-- Main Content -->
-    <div class="content">
-        <h1>Admin Panel - Manage System</h1>
+    <div class="content admin-header">
+        <h1 class="admin-title-textt">Admin Panel - Manage System</h1>
 
         <!-- Home Section -->
         <div id="home" class="tab-content active">
@@ -348,41 +594,26 @@
                     <canvas id="roomAllocationChart" style="max-width: 1200px; max-height: 500px;"></canvas>
                 </div>                
             </div>
-
-            {{-- <!-- Room Reports -->
-            <div style="display: flex; justify-content: space-between; margin-top: 40px;">
-                <div style="background-color: #f8f8f8; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
-                    <h3>Reports of this month</h3>
-                    <p style="font-size: 24px; color: #FF4C4C;">50</p>
-                </div>
-                <div style="background-color: #f8f8f8; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
-                    <h3>Total Fees Collected</h3>
-                    <p style="font-size: 24px; color: #28a745;">₹ 1,20,345</p>
-                </div>
-            </div>--}}
         </div> 
 
         <!-- Manage Users Section -->
         <div id="users" class="tab-content">
+
+            @if(session('success'))
+                <div id="custom-alert" class="green-alert" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close" onclick="closeAlert()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close" onclick="closeAlert()">X</button>
+                </div>
+            @endif
+
             <h2 class="fontx">Address</h2>
             <p>Choose Address To Add A New Student</p>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-
-
-            @if (session('success'))
-                <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-                    {{ session('success') }}
-                </div>
-            @endif
-        
             <table class="table table-bordered">
                 <thead>
                     <th>ID</th>
@@ -392,7 +623,7 @@
                 <tbody>
                     @foreach($addresses as $address)
                     <tr class="clickable-rowstudent" data-id="{{ $address->id }}">
-                        <td>{{ $address->id }}</td>
+                        <td>{{ $loop->iteration}}</td>
                         <td>{{ $address->address_name }}</td>
                         <td>{{ $address->address }}</td>
                     </tr>
@@ -410,7 +641,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form action="{{ route('students.add') }}" method="POST">
+                        <form action="{{ route('students.add') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="address_id" id="address_id" value="">
 
@@ -425,12 +656,14 @@
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     @endif
+
                                 </select>
+                                <p id="checkStudents"></p>
                             </div>
                         
                             <div class="mb-3">
                                 <label class="form-label" for="phone_number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="012-345-6789" pattern="\d{3}-\d{3}-\d{4}" required>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="0123456789" required>
                             </div>
                         
                             <div class="mb-3">
@@ -457,28 +690,23 @@
                                 </select>
                                 <p id="message"></p>
                             </div>
+
+                            <!-- Image Upload Input -->
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Upload Image</label>
+                                <input type="file" name="image" class="form-control"  style="height: 50px;" required>
+                            </div>
                         
                             <div class="text-right">
-                                <button type="submit" class="btn btn-submit">Add Student</button>
+                                <button type="submit" class="btn btn-add">Add Student</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
+        <br><br><br><br>
         <h2 class="fontx">Manage Student</h2>
-
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-
-            
             <table class="table table-bordered">
                 <tr>
                     <th>ID</th>
@@ -488,11 +716,12 @@
                     <th>Phone Number</th>
                     <th>Email</th>
                     <th>Date</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
                 @foreach ($students as $student)
                 <tr>
-                    <td>{{ $student->id }}</td>
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $student->address_id }}</td>
                     <td>{{ $student->room->room_name ?? 'N/A' }}</td>
                     <td>{{ $student->user->name }}</td>
@@ -500,12 +729,20 @@
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->date }}</td>
                     <td>
-                    <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
-                        @csrf
+                        <!-- Check if the furniture image exists -->
+                        @if($student->image)
+                            <a href="{{ asset('storage/' . $student->image) }}" target="_blank">View Image</a>
+                        @else
+                            No Image
+                        @endif
+                    </td>                    
+                    <td>
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this student?');">
+                            @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
-                    </form>
-                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <button type="submit" class="room_delete">Delete</button>
+                        </form>                        
+                    <button class="room_edit"><a href="{{ route('students.edit', $student->id) }}" class="edit_a">Edit</a></button>
                     </td>
                 </tr>
             @endforeach
@@ -514,18 +751,22 @@
 
         <!-- Manage Data Section -->
         <div id="data" class="tab-content">
-            <a href="/addresses/create" class="btn btn-submit">Add Address</a>
-            <h2 class="fontx">Manage Address</h2>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+            
+            @if(session('success'))
+                <div id="custom-alert1" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert1()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert1" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert1()">X</button>
                 </div>
             @endif
 
+            <p>Manage The Room Address Data</p>
+            <a href="/addresses/create" class="btn btn-submit">Add Address</a>
+            
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -541,7 +782,7 @@
                     @foreach($addresses as $address)
                    
                     <tr class="clickable-row"  data-id="{{ $address->id }}" data-room-count="{{ $address->rooms->count() }}" data-room-limit="{{ $address->room_quantity }}">
-                        <td>{{ $address->id }}</td>
+                        <td>{{ $loop->iteration}}</td>
                         <td>{{ $address->address_name }}</td>
                         <td>{{ $address->address }}</td>
                         <td>{{ $address->room_quantity }}</td>
@@ -549,9 +790,9 @@
                             <form action="{{ route('addresses.destroy', $address->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this address?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-action">Edit</a>
+                                <button type="submit" class="btn btn-delete">Delete</button>
                             </form>
-                            <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach
@@ -560,57 +801,67 @@
 
             <!-- Modal for Adding Room -->
             <div class="modal fade" id="addroom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered"> <!-- Use modal-dialog-centered to center the modal -->
-                    <div class="modal-content">
-                        <div class="modal-header">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content custom-modal"> <!-- Add a custom class here -->
+                        <div class="modal-header custom-header"> <!-- Custom header style -->
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Room</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                         </div>
-
+            
                         <div class="modal-body">
                             <!-- Add Room Form -->
-                            <form action="{{ route('rooms.add') }}" method="POST">
+                            <form action="{{ route('rooms.add') }}" method="POST" enctype="multipart/form-data"> <!-- Allow file upload -->
                                 @csrf
                                 <input type="hidden" name="address_id" id="address_id" value="">
-                                
-                                <div class="mb-3">
-                                    <label for="room_name" class="form-label">Room Name</label>
+            
+                                <div class="form-group">
+                                    <label for="room_name" class="form-label text-white">Room Name :</label>
                                     <input type="text" class="form-control" id="room_name" name="room_name" placeholder="Room name" required>
                                 </div>
                             
-                                <div class="mb-3">
-                                    <label class="form-label">Furniture</label><br>
+                                <div class="form-group">
+                                    <label class="form-label text-white">Furniture :</label><br>
                                     @foreach($furnitures as $furniture)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="furniture_{{ $furniture->id }}" name="furniture[]" value="{{ $furniture->name }}">
-                                            <label class="form-check-label" for="furniture_{{ $furniture->id }}">{{ $furniture->name }}</label>
+                                            <label class="form-check-label text-white" for="furniture_{{ $furniture->id }}">{{ $furniture->name }}</label>
                                         </div>
                                     @endforeach
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="room_fee" class="form-label">Room Fee</label>
+            
+                                <div class="form-group">
+                                    <label for="room_fee" class="form-label text-white">Room Fee :</label>
                                     <input type="number" class="form-control" id="room_fee" min="1" name="room_fee" placeholder="Room Fee" required>
                                 </div>
                             
-                                <div class="mb-3">
-                                    <label for="person_quantity" class="form-label">Person Quantity</label>
+                                <div class="form-group">
+                                    <label for="person_quantity" class="form-label text-white">Person Quantity :</label>
                                     <input type="number" class="form-control" id="person_quantity" min="1" name="person_quantity" placeholder="Number of persons" required>
                                 </div>
+                                <label for="room_image" class="form-label text-white">Room Image :</label>
+                                <div class="custom-file">
+                                   
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                  </div>
                             
-                                <div class="mb-3">
-                                    <label for="details" class="form-label">Details</label>
+                                <div class="form-group"><br>
+                                    <label for="details" class="form-label text-white">Details :</label>
                                     <textarea class="form-control" id="details" name="details" placeholder="Additional details" rows="3"></textarea>
                                 </div>
                             
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-submit">Add Room</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn custom-btn-submit" style="width: 250px;">Add Room</button>
+                                    {{-- <button type="button" class="btn custom-btn-back" data-bs-dismiss="modal">Back to Index</button> --}}
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
+            
+
+            <br><br><br><br>
 
             <h2 class="fontx">Manage Room</h2>
                 <table class="table table-bordered">
@@ -622,6 +873,7 @@
                             <th>Furniture</th>
                             <th>Room Fee</th>
                             <th>Person Quantity</th>
+                            <th>Image</th>
                             <th>Details</th>
                             <th>Actions</th>
                         </tr>
@@ -629,7 +881,7 @@
                     <tbody>
                         @foreach($rooms as $room)
                             <tr>
-                                <td>{{ $room->id }}</td>
+                                <td>{{ $loop->iteration}}</td>
                                 <td>{{ $room->address_id }}</td>
                                 <td>{{ $room->room_name }}</td>
                                 <td>
@@ -640,15 +892,21 @@
                                 </td>
                                 <td>{{ $room->room_fee }}</td>
                                 <td>{{ $room->person_quantity }}</td>
+                                <td>
+                                    @if($room->image)
+                                        <a href="{{ asset('storage/' . $room->image) }}" target="_blank">View Image</a>
+                                    @else
+                                        No Image
+                                    @endif
+                                </td>
                                 <td>{{ $room->details }}</td>
                                 <td>
-
                                     <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
+                                        <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-action">Edit</a>
+                                        <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
                                     </form>
-                                    <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -657,19 +915,23 @@
             </div>
 
         <!-- Furniture Section -->
-        <div id="furniture" class="tab-content">
-            <h2 class="fontx">Furniture</h2>
-            <a href="/addFurniture">Add Furniture</a>
-
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div id="furniture" class="tab-content"> 
+            
+            @if(session('success'))
+                <div id="custom-alert2" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="close-alert-btn" aria-label="Close2" onclick="closeAlert2()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert2" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close2" onclick="closeAlert2()">X</button>
                 </div>
             @endif
 
+            <p>Manage The Room Furniture</p>
+            <a href="/addFurniture"  class="btn btn-submit">Add Furniture</a>
+            
             <table>
                 <tr>
                     <th>ID</th>
@@ -680,29 +942,104 @@
                 
                 @foreach($furnitures as $furniture)
                 <tr>
-                    <td>{{ $furniture->id }}</td>
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $furniture->name }}</td>
                     <td>
                         <a href="{{ asset('storage/' . $furniture->image) }}" target="_blank">View Image</a>
                     </td>
                     <td>
-                        <form action="{{ route('furnitures.destroy', $furniture->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('furnitures.destroy', $furniture->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                            <a href="{{ route('furnitures.edit', $furniture->id) }}" class="btn btn-action">Edit</a>
+                            <button type="submit" onclick="return confirm('Are you sure to delete this furniture?')" class="btn btn-delete">Delete</button>
                         </form>
-                        <a href="{{ route('furnitures.edit', $furniture->id) }}">Edit</a>
                     </td>
                 </tr>
                 @endforeach
             </table>
         </div>
 
+        <!-- Register Student -->
+        <div id="registerstudent" class="tab-content">
+            <h5 class="fontx">Register Student</h5>
+            @if(session('success'))
+                <div id="custom-alert3" class="green-alert" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close3" onclick="closeAlert3()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert3" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close3" onclick="closeAlert3()">X</button>
+                </div>
+            @endif
+
+            
+
+    <div class="register">
+    <form method="POST" action="{{ route('adminregister') }}">
+        @csrf
+        <div class="mb-3" style="text-align: center">
+            <label for="name">Student Name :</label><br>
+            <input class="form-controll" type="text" name="name" id="name" placeholder="Full Name" required><br>
+        </div>
+
+        @error('name')
+            {{ $message }}
+        @enderror
+        
+        <div class="mb-3">
+            <label for="email">Email :</label><br>
+            <input class="form-controll" type="email" name="email" id="email" placeholder="Email" required><br>
+        </div>
+
+        @error('email')
+            {{ $message }}
+        @enderror
+         
+        <div class="mb-3">
+            <label for="password">Password :</label><br>
+            <input class="form-controll" type="password" name="password" id="password" placeholder="Password" required><br>
+        </div>
+
+        @error('password')
+            {{ $message }}
+        @enderror
+
+        <div class="mb-3">
+            <label for="confirm_password">Confirm Password :</label><br>
+            <input class="form-controll" type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required><br>
+        </div>
+
+        @error('password_confirmation')
+            {{ $message }}
+        @enderror
+
+        <div class="mb-3">
+            <label for="phone_number">Phone Number :</label><br>
+            <input class="form-controll" type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required><br>
+        </div>
+
+        @error('phone_number')
+            {{ $message }}
+        @enderror
+
+        <input type="hidden" name="role" value="user">
+        
+        <div class="space">
+            <button type="submit" class="btn btn-register">Register</button>
+        </div>
+    </form>
+</div>
+    </div>
+
         <!-- FeedBack Section -->
         <div id="feedback" class="tab-content">
             <h2 class="fontx">Service Report</h2>
             <p>Furniture Repair</p>
-            <table>
+            <table id="example1" class="table table-bordered mt-3">
+                <thead>
                 <tr>
                     <th>ID</th>
                     <th>Student Name</th>
@@ -711,10 +1048,11 @@
                     <th>Subject</th>
                     <th>Message</th>
                 </tr>
-                
+            </thead>
+                <tbody>
                 @foreach ($serviceReports as $serviceReport)
                 <tr>
-                    <td>{{ $serviceReport->id }}</td>
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $serviceReport->user->name }}</td>
                     <td>{{ $serviceReport->user && $serviceReport->user->student ? $serviceReport->user->student->address->address : 'No Address Assigned' }}</td>
                     <td>{{ $serviceReport->user->student->room->room_name }}</td>
@@ -722,6 +1060,7 @@
                     <td>{{ $serviceReport->message }}</td>
                 </tr>
                 @endforeach
+                </tbody>
             </table>
 
         </div>
@@ -729,8 +1068,21 @@
 
         <!-- Fees Section -->
         <div id="fees" class="tab-content">
+
+            @if(session('success'))
+                <div id="custom-alert4" class="green-alert" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close4" onclick="closeAlert4()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert4" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close4" onclick="closeAlert4()">X</button>
+                </div>
+            @endif
+
             <h2 class="fontx">Student Fees</h2>
-            <table>
+            <table id="example2" class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -747,7 +1099,7 @@
                 <tbody>
                     @foreach ($studentFees as $student)
                     <tr>
-                        <td>{{ $student->id }}</td>
+                        <td>{{ $loop->iteration}}</td>
                         <td>{{ $student->user->name }}</td>
                         <td>{{ $student->address->address }} {{ $student->address->address_name }}</td>
                         <td>{{ $student->room->room_name ?? 'N/A' }}</td>
@@ -812,21 +1164,16 @@
 
         <!-- History -->
         <div id="history" class="tab-content">
-            {{-- <form action="{{ route('admin.panel') }}" method="GET">
-                <div class="input-group mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ request('name') }}">
-                    
-                    <input type="date" name="date" class="form-control" value="{{ request('date') }}">
-                    
-                    <div class="input-group-append">
-                        <button class="btn btn-warning" type="submit">Search</button>
-                    </div>
-                </div>
-            </form> --}}
 
             @if(session('success'))
-                <div class="alert alert-success">
+                <div id="custom-alert5" class="green-alert" role="alert">
                     {{ session('success') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close5" onclick="closeAlert5()">X</button>
+                </div>
+            @elseif(session('error'))
+                <div id="custom-alert5" class="red-alert" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close-alert-btn" aria-label="Close5" onclick="closeAlert5()">X</button>
                 </div>
             @endif
 
@@ -841,7 +1188,7 @@
                 </thead>
                 
                 <tbody>
-                @forelse ($paymentReceipts as $paymentReceipt)
+                @foreach ($paymentReceipts as $paymentReceipt)
                 <tr>
                     
                     <td>{{ $paymentReceipt->user->name }}</td>
@@ -861,11 +1208,8 @@
                         </form>
                     </td>
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="3">No payments found.</td>
-                </tr>
-                @endforelse
+                
+                @endforeach
             </tbody>
             </table>
             
@@ -995,6 +1339,7 @@
             $("#address_id").val(addressId);
 
             $.ajax({
+
                 type: 'GET',
                 url: "{{ route('getRooms','') }}/" + addressId,
                 dataType: 'json',
@@ -1027,6 +1372,36 @@
 
             $('#addstudent').modal('show');
             $('#message').html("");
+        });
+
+        $('#user_id').on('change', function () {
+            let userId= $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('getStudents','') }}/" + userId,
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    $("#checkStudents").html("");
+                    if(response.message=="success"){
+                        $("#checkStudents").html("This Student Already Register Inside the Room");
+                    }
+                    
+                },
+                error: function(xhr) {
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        var errors = xhr.responseJSON.errors;
+                        var errorMessage = '<ul>';
+                        $.each(errors, function(key, value) {
+                            errorMessage += '<li>' + value[0] + '</li>'; // Append the first error message
+                        });
+                        errorMessage += '</ul>';
+                        $('#response').html('<p>Errors:</p>' + errorMessage); // Display errors on the page
+                    } else {
+                        console.log("An error occurred: " + xhr.statusText);
+                    }
+                }
+            });
         });
 
         $('#selected_room').on('change', function () {
@@ -1083,7 +1458,7 @@
     var roomAllocationChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Total Rooms', 'Occupied Rooms', 'Empty Rooms'],
+            labels: ['Occupied Rooms', 'Total Rooms' , 'Empty Rooms'],
             datasets: [{
                 label: 'Room Allocation',
                 data: [{{ $totalRooms }}, {{ $totalStudents ?? 0 }}, {{ $totalPersonQuantity }}],
@@ -1163,7 +1538,44 @@ window.onclick = function(event) {
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 new DataTable('#example');
+new DataTable('#example1');
+new DataTable('#example2');
 </script>
 
+<script>
+    function closeAlert() {
+        document.getElementById('custom-alert').style.display = 'none';
+    }
+</script>
+
+<script>
+    function closeAlert1() {
+        document.getElementById('custom-alert1').style.display = 'none';
+    }
+</script>
+
+<script>
+    function closeAlert2() {
+        document.getElementById('custom-alert2').style.display = 'none';
+    }
+</script>
+
+<script>
+    function closeAlert3() {
+        document.getElementById('custom-alert3').style.display = 'none';
+    }
+</script>
+
+<script>
+    function closeAlert4() {
+        document.getElementById('custom-alert4').style.display = 'none';
+    }
+</script>
+
+<script>
+    function closeAlert5() {
+        document.getElementById('custom-alert5').style.display = 'none';
+    }
+</script>
 </body>
 </html>

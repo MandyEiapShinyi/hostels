@@ -48,7 +48,7 @@
                 <h5 class="text-white mb-4">Quick Links</h5>
                 <a class="btn-link fontxxx d-block mb-2" href="/index">Home</a>
                 <a class="btn-link fontxxx d-block mb-2" href="/about">About</a>
-                <a class="btn-link fontxxx d-block mb-2" href="/contact">Contact Us</a>
+                <a class="btn-link fontxxx d-block mb-2" href="/contact">Book Now</a>
             </div>
 
             <div class="col-lg-2 col-md-6">

@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Settings</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         body {
              background-color: #11113c;
@@ -240,6 +242,7 @@
              height: 100%;
              cursor: pointer !important;
          }
+ 
          #signOutLink {
              color: white;
              text-decoration: none;
@@ -257,7 +260,6 @@
              background-color: #9bdfff;
              border-left: 4px solid #333;
          }
- 
      </style>
 </head>
 <body>
@@ -265,14 +267,13 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="a">
-                <div class="addimg">
-                    <img src="{{ $image = $user->student && $user->student->image 
-                    ? asset('storage/' . $user->student->image) 
-                    : asset('images/png-clipart-avatar-user-profile-icon-women-wear-frock-face-holidays-thumbnail.jpg');}}" alt="Image not found" id="output" name="1">
-                    {{-- <img src="{{ asset('storage/' . Auth::user()->student->image); }}" alt="nofound" id="output" name="1"> --}}
+            <div class="addimg">
+                    <img src="{{ asset('storage/' . Auth::user()->student->image); }}" alt="nofound" id="output" name="1">
             </div>
-            <h3>Name : {{ Auth::user()->name }}</h3>
-            <p>Email : {{ Auth::user()->email }}</p>
+            
+        
+        <h3>Welcome, {{ Auth::user()->name }}</h3>
+        <p>Email: {{ Auth::user()->email }}</p>
             <div>
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
@@ -292,64 +293,11 @@
 
         <!-- Content Container -->
         <div class="content-container">
-                <h2>Fees</h2>
-                <p>Your fees information goes here.</p>
-            <div class="table-section">
-                <h2>Room Information Table</h2>
-                <table id="payment">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Payment Receipt</th>
-                            
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($paymentReceipts as $payment)
-                            <tr>
-                                <td>{{ $payment->id }}</td>
-                                <td>
-                                    @if (Str::endsWith($payment->image, '.pdf'))
-                                        <!-- If it's a PDF, display a link to view the PDF in a new tab -->
-                                        <a href="{{ asset('storage/' . $payment->image) }}" target="_blank" style="color: blue;">View PDF</a>
-                                    @else
-                                        <!-- Otherwise, it's assumed to be an image -->
-                                        <a href="{{ asset('storage/' . $payment->image) }}" target="_blank" style="color: blue;">View Image</a>
-                                    @endif
-                                </td>                                                               
-                                <td>{{ $payment->created_at }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                
               </div>  
         </div>
     </div>
 </body>
-
-<script>
-    function loading(event){
-            let output=document.getElementById('output');
-            console.log(event.files);
-            
-            const imageUrl = URL.createObjectURL(event.files[0]);
-            output.src = imageUrl;
-            localStorage.setItem('imageSrc', imageUrl);
-
-
-        }
-
-        window.onload = function() {
-            let savedImageSrc = localStorage.getItem('imageSrc');
-            console.log(savedImageSrc);
-            if (savedImageSrc) {
-                document.getElementById('output').src = savedImageSrc;
-            }
-        };
-</script>
 
 <script>
     // Confirm before sign out

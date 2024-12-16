@@ -11,8 +11,9 @@ use App\Models\Student;
 use App\Models\Furniture;
 use Illuminate\Http\Request;
 use App\Models\PaymentReceipt;
-use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 class StudentController extends Controller
@@ -37,15 +38,21 @@ class StudentController extends Controller
 
     public function addStudent(Request $request)
     {
+
+        // dd(123);
         $validatedData = $request->validate([
-            'user_id' => 'required|string|max:255',
+            'user_id' => 'required|string|max:255|unique:students,user_id',
             'phone_number' => 'required|string|regex:/\d{3}-\d{3}-\d{4}/',
             'email' => 'required|email|max:255',
             'date' => 'required|date',
             'room_id' => 'required',
             'address_id' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
+        
+
+        // dd($request->room_id);
         $room = Room::find($request->room_id);
         
         if (!$room) {
@@ -58,6 +65,14 @@ class StudentController extends Controller
 
         if ($currentStudentCount >= $roomLimit) {
             return redirect()->back()->with('error', 'This room has reached its capacity.');
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/students', 'public');
+    
+            $validatedData['image'] = $imagePath;
+        } else {
+            return redirect()->back()->with('error', 'Image upload failed.');
         }
 
         Student::create($validatedData);
@@ -95,6 +110,8 @@ class StudentController extends Controller
         $paymentReceipts = PaymentReceipt::with('user')->get();
 
         $users = User::where('role', 'user')->get();
+        
+
 
         return view('adminIndex', compact('students', 'rooms', 'furnitures', 'totalStudents', 'totalRooms', 'addresses','totalPersonQuantity','feedbacks', 'serviceReports', 'users', 'service', 'studentFees', 'paymentReceipts'));
     }
@@ -107,6 +124,23 @@ class StudentController extends Controller
         return response()->json([
             "room"=>$rooms,
             "message","success",
+        ],201);
+    }
+
+    public function getStudents($userId)
+    {
+        
+        
+        $students = Student::WHERE("user_id", $userId)->get();
+        
+        if(count($students)>0) {
+            return response()->json([
+            "user_id"=>$students,
+            "message"=>"success",
+        ],201);
+        }
+        return response()->json([
+            "message","fail",
         ],201);
     }
 
@@ -161,6 +195,27 @@ class StudentController extends Controller
         ]);
 
         return redirect('/admin_show')->with('success', 'Student updated successfully!')->with("page","users");
+    }
+
+    public function adminRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+            'phone_number' => 'required|numeric',
+        ]);
+        
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'phone_number' => $request->input('phone_number'),
+            'role' => 'user',
+        ]);
+        
+    
+        return redirect('/admin_show')->with('success', 'You have registered successfully!');
     }
 
 } 

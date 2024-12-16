@@ -16,6 +16,7 @@ class Student extends Model
         'email',
         'date',
         'address_id',
+        'image',
     ];
 
     public function address()

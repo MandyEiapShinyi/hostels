@@ -28,6 +28,7 @@ class RoomController extends Controller
             'furniture' => 'nullable|array',
             'room_fee' => 'required',
             'address_id' => 'required|exists:addresses,id',
+            'image' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $address = Address::find($request->address_id);
@@ -40,6 +41,14 @@ class RoomController extends Controller
             
             return redirect()->back()->with('error', "It is full, doesn't have any room");
        
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/rooms', 'public');
+    
+            $validatedData['image'] = $imagePath;
+        } else {
+            return redirect()->back()->with('error', 'Image upload failed.');
         }
 
         $validatedData['furniture'] = json_encode($request->furniture);

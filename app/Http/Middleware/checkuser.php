@@ -18,7 +18,7 @@ class checkuser
     {
         if (Auth::check()==false) {
             
-            return redirect('/adminLogin')->with('error', 'Your account is inactive.');
+            return redirect('/userlogin')->with('error', 'Your account is inactive.');
         }
 
         // if (Auth::user()->role !== $role) {

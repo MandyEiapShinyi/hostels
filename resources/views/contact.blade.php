@@ -65,7 +65,7 @@
               <nav class="main-nav">
                 <!-- ***** Logo Start ***** -->
                 <a href="/index" class="logo">
-                  <img style= "width: 82px; height: 75px" src="assets/images/synergy.png" alt="">
+                  <img style= "width: 73px; height: 65px" src="assets/images/synergy.png" alt="">
                 </a>
                 <!-- ***** Logo End ***** -->
                 <!-- ***** Menu Start ***** -->
@@ -74,7 +74,7 @@
                   <li><a href="/about">About</a></li>
                   <li><a href="/reviewroom">Review</a></li>
                   <li><a href="/stores">Locator</a></li>
-                  <li><a href="/contact">Contact Us</a></li>
+                  <li><a href="/contact">Book Now</a></li>
                   <li><a href="/index#hostel"><i class="fa fa-calendar"></i>Visit d Room</a></li>
                 </ul>
                 <a class='menu-trigger'>
@@ -87,13 +87,20 @@
         </div>
       </header>
       <!-- ***** Header Area End ***** -->
+
+      @if(session('success'))
+      <div id="custom-alert" class="green-alert" role="alert">
+          {{ session('success') }}
+          <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
+      </div>
+      @endif
       
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="/index">Home</a>  /  Contact Us</span>
-          <h3>Contact Us</h3>
+          <span class="breadcrumb"><a href="/index">Home</a>  /  Book Now</span>
+          <h3>Book Now</h3>
         </div>
       </div>
     </div>
@@ -104,7 +111,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
-            <h6>| Contact Us</h6>
+            <h6>| Book Now</h6>
             <h2>Get In Touch With Our Agents</h2>
           </div>
 
@@ -176,6 +183,40 @@
     </div>
   </div>
 
+  <style>
+    .green-alert {
+        background-color: #b7e0b8;
+        color: black;
+        padding: 15px 25px;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        position: fixed;
+        top: 60;
+        transform: translateY(20px);
+        right: 20px;
+        z-index: 999999;
+        width: 350px;
+    }
+
+    .close-alert-btn {
+        background-color: transparent; /* No background */
+        border: none; /* No border */
+        color: black; /* White 'X' */
+        font-size: 16px; /* Slightly larger 'X' */
+        position: absolute; /* Position the button at the top-right */
+        /* top: -4px; */
+        right: 15px;
+        cursor: pointer; /* Pointer cursor for the button */
+    }
+
+    .close-alert-btn:hover {
+        color:; /* Lighten the color on hover */
+    }
+
+</style>
+
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -184,5 +225,23 @@
   <script src="assets/js/owl-carousel.js"></script>
   <script src="assets/js/counter.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <script>
+    function closeAlert() {
+        document.getElementById('custom-alert').style.display = 'none';
+    }
+  </script>
+  <script>
+    window.onload = function() {
+      const alert = document.querySelector('.green-alert'); // Target the green alert element
+  
+      if (alert) {
+          setTimeout(function() {
+              alert.style.display = 'none'; // Hide the alert after 4 seconds
+          }, 8000); // 4 seconds in milliseconds
+      }
+  }
+  
+  </script>
 
   @include('footer')

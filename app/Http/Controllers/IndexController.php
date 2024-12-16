@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
     public function index() 
     {
         $reviews = Review::all();
-        return view("index", compact('reviews'));
+        $rooms = Room::all();
+        
+        return view("index", compact('reviews', 'rooms'));
     }
 
     public function contact()
@@ -60,7 +63,10 @@ class IndexController extends Controller
 
     public function room() 
     {
-        return view('room');
+        $rooms = Room::all();
+
+        // return view('index', compact('rooms'));
+        return view('room', compact('rooms'));
     }
 
     public function reviewroom() 
@@ -83,7 +89,7 @@ class IndexController extends Controller
 
         Review::create($validated);
 
-        return back()->with('success', 'Review submitted successfully!');
+        return redirect()->to(url()->previous() . '#reviewForm')->with('success', 'Review submitted successfully!');
     }
 
 }

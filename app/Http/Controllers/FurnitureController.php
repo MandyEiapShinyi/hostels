@@ -54,10 +54,10 @@ class FurnitureController extends Controller
 
         $furniture->save();
 
-        return redirect('/admin_show')->with('success', 'Student updated successfully!')->with("page","furniture");
+        return redirect('/admin_show')->with('success', 'Furniture updated successfully!')->with("page","furniture");
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $furniture = Furniture::findOrFail($id);
         $furniture->delete();

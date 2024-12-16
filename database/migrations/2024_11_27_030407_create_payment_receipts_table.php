@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('payment_receipts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('set null');
             $table->string('image');
             $table->string('date');
             $table->timestamps();

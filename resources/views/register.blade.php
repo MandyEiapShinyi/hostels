@@ -105,15 +105,7 @@
         @error('name')
             {{ $message }}
         @enderror
-        
-        {{-- <div class="space">
-            <input class="box" type="text" name="last_name" id="last_name" placeholder="Last Name" required><br>
-        </div>
-
-        @error('last_name')
-            {{ $message }}
-        @enderror --}}
-
+    
         <div class="space">
             <input class="box" type="email" name="email" id="email" placeholder="Email" required><br>
         </div>
@@ -152,7 +144,7 @@
             <button type="submit">Register</button>
         </div>
         <p class="options">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account? <a href="/userlogin">Login</a>
         </p>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

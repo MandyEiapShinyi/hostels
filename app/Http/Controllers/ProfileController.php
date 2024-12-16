@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\sendmail;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Mail\sendmail;
 use App\Models\Address;
-use App\Models\PaymentReceipt;
 use App\Models\Service;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Models\PaymentReceipt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +20,8 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-
+        $student=student::where("user_id",$user->id)->get();
+        
         return view('profile', ['user' => $user]);
     }
 
@@ -26,10 +29,17 @@ class ProfileController extends Controller
     public function information() 
     {
         $students = Auth::user();
+        $user = Auth::user();
         $furniture=$students->student->room->furniture;    
         // dd($students); 
-
-        return view('roomInformation', compact('students'));
+        // if ($students && $students->room) {
+        //     // Get the furniture details from the room
+        //     // $furniture = $students->room->furniture;
+            
+        //     // Return the room information view with the student's data and furniture
+            
+        // } 
+        return view('roomInformation', compact('students', 'furniture', 'user'));
     }
 
     public function hostel() 
@@ -38,14 +48,33 @@ class ProfileController extends Controller
         // dd($user->paymentReceipt);
         $paymentReceipts = $user->fetchhistory;
         // dd($user->fetchhistory);
-        return view('hostelFee', compact('paymentReceipts'));
+        return view('hostelFee', compact('paymentReceipts', 'user'));
+    }
+
+    public function reminder()
+    {
+        $today = Carbon::now();
+
+        $dueFees = Fee::where('due_date', '<=', $today)
+                ->where('status', 'unpaid')
+                ->get();
+        return view('reminderFee');
+    }
+
+
+    public function ruleRoom()
+    {
+        $user = Auth::user();
+
+        return view('rules', compact('user'));
     }
 
     public function service() 
     {
         $data = Service::all();
+        $user = Auth::user();
         // dd($data);
-        return view('serviceReport', compact('data'));
+        return view('serviceReport', compact('data', 'user'));
     }
 
     public function store(Request $request)
@@ -71,7 +100,7 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/userlogin');
     }
 
     public function showRoom()
@@ -87,7 +116,11 @@ class ProfileController extends Controller
     }
 
     public function showChangePasswordForm()
-    {
+    {   
+        if(csrf_token()!=request('token')){
+            return view('login');
+        }
+
         return view('changePassword'); // View for change password form
     }
 

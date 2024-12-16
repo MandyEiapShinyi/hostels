@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FurnitureController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\StudentFeeController;
+use App\Http\Controllers\UploadImageController;
 
 
 Route::get('/', function () {
@@ -108,6 +109,10 @@ Route::post('/contact', [IndexController::class, 'store'])->name('contact.store'
 // Route::get('/contact', [ContactController::class, 'contact'])->name('contact.form');
 // Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+
+//get student
+Route::get('/get-students/{userId}', [StudentController::class, 'getStudents'])->name('getStudents');
+
 Route::get('/header', [IndexController::class, 'header']);
 
 Route::get('/about', [IndexController::class, 'about']);
@@ -164,10 +169,14 @@ Route::post('/uploadPayment', [StudentFeeController::class, 'uploadPayment'])->n
 //delete payment receipt
 Route::delete('/payment/{id}', [StudentFeeController::class, 'destroy'])->name('payment.destroy');
 
+//upload image
+Route::post('/uploadImage', [UploadImageController::class, 'uploadImage'])->name('uploadImage');
 
-//reset password
-//search bar
-// Route::get('/search', [StudentController::class, 'search'])->name('search');
+//admin add student register
+Route::post('/adminRegisterStudent', [StudentController::class, 'adminRegister'])->name('adminregister');
 
-//feedback
-// <Route::>
+//reminder Fee
+Route::get('/reminderFee', [ProfileController::class, 'reminder'])->middleware(checkuser::class);
+
+//room rule
+Route::get('/rule', [ProfileController::class, 'ruleRoom'])->middleware(checkuser::class);

@@ -23,7 +23,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            height: 550px;
+            height: 700px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -46,15 +46,23 @@
             font-size: 17px;
         }
         .tab:hover {
-            background-color: #5b6ec4;
+            background-color: #9bdfff;
             border-left: 4px solid #333;
         }
 
         .sidebar .tab.active {
-            background-color: #5b6ec4;
+            background-color: #9bdfff;
             border-left: 4px solid #333;
         }
-
+        .content-container {
+            width: 65%;
+            margin-left: 40px;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 17px;
+            margin-top: 30px;
+        }
         .tab-content {
             display: none;
         }
@@ -77,7 +85,15 @@
             border-radius: 4px;
             border-color: #11113c;
         }
-
+        .save-button {
+            background-color: #11113c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
         .tab-content h2 {
             color: #333;
             font-size: 24px;
@@ -114,6 +130,8 @@
             position: absolute;
             width: 100px;
             height: 100px;
+            /* border-radius: 50%; */
+            /* border: 5px solid black; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -154,80 +172,10 @@
             font-family: 'Times New Roman';
         }
         #signOutLink:hover {
-            background-color: #5b6ec4;
+            background-color: #9bdfff;
             border-left: 4px solid #333;
         }
-        .content-container {
-            width: 65%;
-            margin-left: 40px;
-            padding: 30px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            font-size: 17px;
-            margin-top: 30px;
-        }
-        .content h5 {
-            font-size: 18px;
-            font-weight: bold;
-            color: #5b6ec4;
-            margin-bottom: 10px;
-            font-family: 'Times New Roman';
-        }
 
-        .content h5 span {
-            font-size: 15px;
-            font-weight: 400;
-            color: #888;
-            display: block;
-            margin-top: 5px;
-        }
-        .content p {
-            margin: 5px 0;
-            font-size: 17px;
-            color: #555;
-        }
-        .content {
-            margin-left: 100px;
-        }
-        .save-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #5b6ec4;
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .save-button:hover {
-            background-color: #4a5aa8;
-        }
-        .alert {
-            background-color: #ffeeba;
-            color: #856404;
-            padding: 10px;
-            margin-top: 15px;
-            border: 1px solid #ffeeba;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        .edit-button,
-        .save-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #11113c;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition */
-        }
-
-        .edit-button:hover,
-        .save-button:hover {
-            background-color: #ea232e;
-            transform: scale(1.05); /* Add a slight scaling effect on hover */
-        }
     </style>
 </head>
 <body>
@@ -235,27 +183,17 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="a">
-            {{-- <div  class="addimg">
-                <img src="maidsimg/user.jpg" alt="" id="output" name="1">
-                <div class="input-div">
-                    <input class="input" name="img" value="{{old('img')}}" type="file" onchange="loading(this)">
-                    <i class="fa fa-cloud-upload icon" aria-hidden="true"></i>
-                </div>
-            </div> --}}
-            
             <div class="addimg">
-                {{-- @if($student->image) --}}
                 <img src="{{ $image = $user->student && $user->student->image 
-                    ? asset('storage/' . $user->student->image) 
-                    : asset('images/png-clipart-avatar-user-profile-icon-women-wear-frock-face-holidays-thumbnail.jpg');}}" alt="Image not found" id="output" name="1">
-                {{-- @else --}}
-                    {{-- No Image --}}
-                {{-- @endif --}}
+                ? asset('storage/' . $user->student->image) 
+                : asset('images/png-clipart-avatar-user-profile-icon-women-wear-frock-face-holidays-thumbnail.jpg');}}" alt="Image not found" id="output" name="1">
+                    {{-- <img src="{{ asset('storage/' . $user->student->image); }}" alt="nofound" id="output" name="1"> --}}
             </div>
 
             <h3>Name : {{ Auth::user()->name }}</h3>
             <p>Email : {{ Auth::user()->email }}</p>
             <div>
+                {{-- <input type="file" id="imageUpload" accept="image/*"><br><br> --}}
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
@@ -274,26 +212,35 @@
 
         <!-- Content Container -->
         <div class="content-container">
-            <h2>Profile Settings</h2>
-            <p>Full Name: {{ $user->name }}</p>
-            <p>Email: {{ $user->email }}</p>
-            <p>Phone Number: {{ $user->phone_number }}</p>
-            <p>Password: ********</p>
-            <a href="{{route('sendmail')}}" class="save-button">Change Password</a>
-            
-            @if(session('status'))
-                <div class="alert">{{ session('status') }}</div>
-            @endif
-            @if($errors->any())
-                <div class="alert">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
+           
+               <div style="max-width: 600px; padding: 30px;">
+                   <h3 style="font-size: 20px; color: #5b6ec4;  text-align: center; font-family: Arial, sans-serif;">
+                     Policy and Notices
+                   </h3>
+                   
+                   <p style="font-size: 15px; color: #555; line-height: 1.8; font-family: 'Verdana', sans-serif;">
+                     At the time, students are required to follow the following rules:
+                   </p>
+                   
+                   <ul style="font-size: 14px; color: #444; line-height: 1.8; padding-left: 40px; margin-bottom: 30px; font-family: 'Verdana', sans-serif;">
+                     <li>No smoking in the hostel</li>
+                     <li>No drinking in the hostel</li>
+                     <li>No partying in the hostel</li>
+                     <li>Rent should be given up to 6 months</li>
+                   </ul>
+                 
+                   <h4 style="font-size: 20px; color: #5b6ec4; margin-bottom: 10px; font-family: Arial, sans-serif;">General Conduct</h4>
+                   <p style="font-size:14px; color: #555; line-height: 1.8; margin-bottom: 20px; font-family: 'Verdana', sans-serif;">
+                     - Respect fellow residents, staff, and college property.<br>
+                     - Avoid disruptive activities that may disturb others.<br>
+                     - Maintain cleanliness in common areas and your own room.
+                   </p>
+                   
+                   <h4 style="font-size: 20px; color: #5b6ec4; margin-bottom: 10px; font-family: Arial, sans-serif;">Safety and Security</h4>
+                   <p style="font-size: 15px; color: #555; line-height: 1.8; font-family: 'Verdana', sans-serif;">
+                     - Keep your room keys secure and report any loss immediately.<br>
+                     - Do not allow unauthorized visitors into the hostel premises.
+                   </p>
         </div>
     </div>
 </body>

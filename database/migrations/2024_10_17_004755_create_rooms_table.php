@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("address_id")->constrained("addresses")->onDelete("set null");
+            // $table->foreignId("address_id")->constrained("addresses")->onDelete("set null");
             // $table->foreignId('room_id')->nullable()->constrained()->onDelete('set null');
             $table->string('room_name');
             $table->json('furniture');
             $table->string('room_fee');
             $table->string('person_quantity');
+            $table->string('image');
             $table->string('details');
             $table->timestamps();
         });

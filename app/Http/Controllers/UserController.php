@@ -55,7 +55,7 @@ class UserController extends Controller
         ]);
         
     
-        return redirect('/login')->with('success', 'You have registered successfully!');
+        return redirect('/userlogin')->with('success', 'You have registered successfully!');
     }
 
     // public function uploadAvatar(Request $request)

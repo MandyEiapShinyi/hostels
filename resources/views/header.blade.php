@@ -65,17 +65,17 @@
               <nav class="main-nav">
                 <!-- ***** Logo Start ***** -->
                 <a href="/index" class="logo">
-                  <img style= "width: 82px; height: 65px" src="assets/images/synergy.png" alt="">
+                  <img style= "width: 73px; height: 65px" src="assets/images/synergy.png" alt="">
                 </a>
                 <!-- ***** Logo End ***** -->
                 <!-- ***** Menu Start ***** -->
                 <ul class="nav">
                   <li><a href="/index" class="active">Home</a></li>
                   <li><a href="/about">About</a></li>
-                  <li><a href="/reviewroom">Review</a></li>
+                  <li><a href="/reviewroom">Rules</a></li>
                   <li><a href="/stores">Locator</a></li>
-                  <li><a href="/contact">Contact Us</a></li>
-                  <li><a href="#hostel"><i class="fa fa-calendar"></i>Visit d Room</a></li>
+                  <li><a href="/contact">Book Now</a></li>
+                  <li><a href="#hostel"><i class="fa fa-calendar"></i>Visit a Room</a></li>
                 </ul>
                 <a class="menu-trigger" id="menuTrigger">
                   <span>Menu</span>

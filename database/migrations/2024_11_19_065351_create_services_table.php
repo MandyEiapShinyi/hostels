@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users")->onDelete("set null");
             $table->string('subject');
             $table->text('message');
             $table->timestamps();
