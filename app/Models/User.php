@@ -77,4 +77,10 @@ class User extends Authenticatable
         $this->notify(new CustomResetPasswordNotification($token));
     }
 
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+
 }

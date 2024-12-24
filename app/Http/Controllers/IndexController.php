@@ -13,7 +13,7 @@ class IndexController extends Controller
     public function index() 
     {
         $reviews = Review::all();
-        $rooms = Room::all();
+        $rooms = Room::where('status', true)->get();
         
         return view("index", compact('reviews', 'rooms'));
     }
@@ -63,7 +63,7 @@ class IndexController extends Controller
 
     public function room() 
     {
-        $rooms = Room::all();
+        $rooms = Room::where('status', true)->get();
 
         // return view('index', compact('rooms'));
         return view('room', compact('rooms'));
@@ -77,6 +77,12 @@ class IndexController extends Controller
     public function stores() 
     {
         return view('stores');
+    }
+
+    public function design()
+    {
+        $rooms = Room::where('status', true)->get();
+        return view('design', compact('rooms'));
     }
 
     public function review(Request $request)

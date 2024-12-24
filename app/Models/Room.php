@@ -16,6 +16,7 @@ class Room extends Model
         'furniture',
         'room_fee',
         'address_id',
+        'status',
         'image',
     ];
 

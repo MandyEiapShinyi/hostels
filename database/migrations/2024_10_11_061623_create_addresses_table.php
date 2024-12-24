@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("address_name");
             $table->string("address");
             $table->string("room_quantity");
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

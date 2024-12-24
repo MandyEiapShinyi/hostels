@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\PaymentReceipt;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -101,9 +102,10 @@ class StudentController extends Controller
             return $student;
         });
 
-        $rooms = Room::all();
+        $rooms = Room::where('status', true)->get();
         $furnitures = Furniture::all();
-        $addresses = Address::all();
+        $addresses = Address::where('status', true)->get();
+
         $feedbacks = Contact::all();
         $serviceReports = Service::with(["user.student.address","user.student.room"])->get();
         $service = Service::count();
@@ -171,9 +173,10 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        $rooms = Room::all();
+        $users = User::where('role', 'user')->get();
+        $rooms = Room::where('status', true)->get();
 
-        return view('adminEditStudent', compact('student', 'rooms'));
+        return view('adminEditStudent', compact('student', 'rooms', 'users'));
     }
 
     public function update(Request $request, $id)
@@ -181,11 +184,17 @@ class StudentController extends Controller
         $request->validate([
             'user_id' => 'required|string|max:255',
             'phone_number' => 'required',
-            'date' => 'required|date', 
+            'date' => 'required|date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
             'email' => 'required|email|max:255|unique:students,email,' . $id,
         ]);
     
         $student = Student::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $student->image = $imagePath;
+        }
 
         $student->update([
             'student_name' => $request->input('student_name'),
@@ -215,7 +224,7 @@ class StudentController extends Controller
         ]);
         
     
-        return redirect('/admin_show')->with('success', 'You have registered successfully!');
+        return redirect('/admin_show')->with('success', 'You have registered successfully!')->with("page", "registerstudent");
     }
 
 } 

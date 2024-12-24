@@ -13,6 +13,7 @@ class Address extends Model
         'address_name',
         'address',
         'room_quantity',
+        'status',
     ];
 
     public function rooms()

@@ -23,7 +23,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            height: 550px;
+            height: 629px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -88,6 +88,10 @@
             font-size: 16px;
             margin-bottom: 20px;
         }
+        .active {
+            background-color: lightgrey;
+        }
+
         a {
             text-decoration: none;
             color: white;
@@ -228,6 +232,7 @@
             background-color: #ea232e;
             transform: scale(1.05); /* Add a slight scaling effect on hover */
         }
+        
     </style>
 </head>
 <body>
@@ -256,48 +261,88 @@
             <h3>Name : {{ Auth::user()->name }}</h3>
             <p>Email : {{ Auth::user()->email }}</p>
             <div>
-                <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
-                <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
+                <div class="tab active"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
+                <div class="tab "><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
         </div>
+                <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
-                    <button type="submit"  id="signOutLink">
+                    <button type="submit"  id="signOutLink" style="height:40px;margin-top:15px;">
                         <i class="fas fa-sign-out-alt"></i> Sign Out
                     </button>
                 </form>             
         </div>
 
+
         <!-- Content Container -->
         <div class="content-container">
-            <h2>Profile Settings</h2>
-            <p>Full Name: {{ $user->name }}</p>
-            <p>Email: {{ $user->email }}</p>
-            <p>Phone Number: {{ $user->phone_number }}</p>
-            <p>Password: ********</p>
-            <a href="{{route('sendmail')}}" class="save-button">Change Password</a>
-            
-            @if(session('status'))
-                <div class="alert">{{ session('status') }}</div>
-            @endif
-            @if($errors->any())
-                <div class="alert">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
-        </div>
-    </div>
-</body>
+            <h1>Profile</h1>
+            <div class="content">
+                <h5>
+                    FULL NAME {{csrf_token()}}<br>
+                    <span>You should know your name before you want to change</span>
+                    <input id="name" type="text" value="{{ $user->name }}" readonly>
+                </h5>
 
+                <h5>
+                    EMAIL <br>
+                    <span>You should know your email before you want to change</span>
+                    <input id="email" type="text" value="{{ $user->email }}" readonly>
+                </h5>
+
+                <h5>
+                    PHONE NUMBER <br>
+                    <span>You should know your phone number before you want to change</span>
+                    <input id="phone_number" type="text" value="{{ $user->phone_number }}" readonly>
+                </h5>
+
+                <h5>
+                    PASSWORD <br>
+                    <span>You should know your password before you want to change</span>
+                    <input id="password" type="password" value="********" placeholder="Your Password" max='8' readonly>
+                    {{-- <p id='charCount'>0</p> --}}
+                </h5><br>
+
+                <button class="edit-button" id="edit-button" onclick="enableEdit()">Edit</button>
+                <button onclick="saveChanges()" class="save-button" id="save-button" style="display: none;">Back</button>
+                <a href="{{route('sendmail')}}" class="save-button" id="change-password" style="display: none; font-family: sans-serif;">Change Password</a>
+            </div>
+        </div> 
+    </body> 
+
+<script>
+    function enableEdit() {
+        const inputs = document.querySelectorAll('input');
+
+        
+
+        document.getElementById('save-button').style.display = 'inline-block';
+        document.getElementById('change-password').style.display = 'inline-block';
+
+        document.getElementById('edit-button').style.display = 'none';
+    }
+
+    function saveChanges() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phoneNumber = document.getElementById('phone_number').value;
+
+        console.log('Saving changes...');
+        console.log({ name, email, phoneNumber });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => input.setAttribute('readonly', true));
+
+        document.getElementById('edit-button').style.display = 'inline-block';
+        document.getElementById('save-button').style.display = 'none';
+        document.getElementById('change-password').style.display = 'none';
+    }
+</script>
 <script>
     // Confirm before sign out
     document.getElementById('signOutButton').addEventListener('click', function() {
@@ -312,4 +357,14 @@
         location.reload();
     }
 </script>
+
+<script>
+    const password = document.getElementById('password');
+    const charCount = document.getElementById('charCount');
+
+    password.addEventListener('input',()=>{
+        charCount.textContent = password.value.length;
+    });
+</script>
+
 </html>

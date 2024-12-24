@@ -136,7 +136,7 @@
                     <!-- Buttons -->
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-submit">Update Address</button>
-                        <a href="/admin_show" class="btn btn-secondary">Back To Index</a>
+                        <a href="{{ route('adminBack', 'data')}}" class="btn btn-secondary">Back To Index</a>
                     </div>
                 </form>
             </div>

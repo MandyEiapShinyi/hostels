@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('room_fee');
             $table->string('person_quantity');
             $table->string('image');
+            $table->boolean('status')->default(true);
             $table->string('details');
             $table->timestamps();
         });

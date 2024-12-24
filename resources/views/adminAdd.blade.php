@@ -72,7 +72,7 @@
 
                 <div class="mb-3">
                     <label for="phone_number" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="012-345-6789" pattern="^0\d{2}-\d{3}-\d{4}$"title="Please enter a valid phone number (e.g., 012-345-6789)" required >       
+                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="0123455789" required >       
                 </div>
 
                 <div class="mb-3">

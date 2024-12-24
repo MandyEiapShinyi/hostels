@@ -124,7 +124,7 @@
 
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-submit">Add</button>
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url('/admin_show') }}';">Back to Index</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('adminBack','data') }}';">Back to Index</button>
                     </div>
                 </form>
             </div>

@@ -4,8 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Settings</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
-  
     <script>
         function closeAlert() {
             document.getElementById('custom-alert').style.display = 'none';
@@ -21,8 +19,6 @@
             font-family: Arial, sans-serif;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
             position: relative;
-            max-width: 400px; /* Max width */
-            /* margin: 20px auto; Center align */
             text-align: center; /* Center text */
         }
 
@@ -58,7 +54,7 @@
              padding: 20px;
              text-align: center;
              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-             height: 700px;
+             height: 629px;
              display: flex;
              flex-direction: column;
              justify-content: space-between;
@@ -81,12 +77,12 @@
              font-size: 17px;
          }
          .tab:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
  
          .sidebar .tab.active {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
          .content-container {
@@ -290,7 +286,7 @@
              font-family: 'Times New Roman';
          }
          #signOutLink:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
          #contact-form {
@@ -377,16 +373,16 @@
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
+                {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
-                <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab active"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
         </div>
+               <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
-                    <button type="submit"  id="signOutLink">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </button>
+                    <button type="submit"  id="signOutLink">Sign Out</button>
                 </form>             
         </div>
 

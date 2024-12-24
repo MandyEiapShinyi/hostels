@@ -53,7 +53,7 @@
             </li>
             <li class="list-group-item" style="background-color: #90CAF9;">
               <a href="https://www.google.com/maps/search/Megamall+Perai" target="_blank">
-                <strong>Megamall</strong>
+                <strong>Megamal</strong>
               </a><br>
             </li>
             <li class="list-group-item" style="background-color: #64B5F6;">
@@ -91,14 +91,19 @@
                 <strong>Eco-Shop</strong>
               </a>
             </li>
+            <li class="list-group-item" style="background-color: #1976D2;">
+              <a href="https://www.google.com/maps/search/MyNews+near+Perai,+Penang" target="_blank">
+                <strong>MyNews</strong>
+              </a>
+            </li>
             <li class="list-group-item" style="background-color: #1565C0;">
               <a href="https://www.google.com/maps/search/Public+Bank+ATM+near+Perai,+Penang" target="_blank">
                 <strong>Public Bank ATM</strong>
               </a>
             </li>
-            <li class="list-group-item" style="background-color: #0D47A1;">
-              <a href="https://www.google.com/maps/search/Petronas+Petrol+Station+near+Perai,+Penang" target="_blank">
-                <strong>Petronas Petrol Station</strong>
+            <li class="list-group-item" style="background-color: #1565C0;">
+              <a href="https://www.google.com/maps/search/Star+Grocery+near+Perai,+Penang" target="_blank">
+                <strong>Star Grocery</strong>
               </a>
             </li>
             <li class="list-group-item" style="background-color: #0D47A1;">
@@ -106,14 +111,9 @@
                 <strong>Shell Petrol Station</strong>
               </a>
             </li>
-            <li class="list-group-item" style="background-color: #1976D2;">
-              <a href="https://www.google.com/maps/search/MyNews+near+Perai,+Penang" target="_blank">
-                <strong>MyNews</strong>
-              </a>
-            </li>
-            <li class="list-group-item" style="background-color: #1565C0;">
-              <a href="https://www.google.com/maps/search/Star+Grocery+near+Perai,+Penang" target="_blank">
-                <strong>Star Grocery</strong>
+            <li class="list-group-item" style="background-color: #0D47A1;">
+              <a href="https://www.google.com/maps/search/Petronas+Petrol+Station+near+Perai,+Penang" target="_blank">
+                <strong>Petronas Petrol Station</strong>
               </a>
             </li>
           </ul>
@@ -128,47 +128,47 @@
                 <strong>McDonald's</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FFCDD2;">
+            <li class="list-group-item" style="background-color: #FFEBEE;">
               <a href="https://www.google.com/maps/search/KFC+near+Perai,+Penang" target="_blank">
                 <strong>KFC</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #EF9A9A;">
+            <li class="list-group-item" style="background-color: #FFCDD2;">
               <a href="https://www.google.com/maps/search/Starbucks+near+Perai,+Penang" target="_blank">
                 <strong>Starbucks</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #E57373;">
+            <li class="list-group-item" style="background-color: #FFCDD2;">
               <a href="https://www.google.com/maps/search/Domino's+Pizza+near+Perai,+Penang" target="_blank">
                 <strong>Domino's Pizza</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #EF5350;">
+            <li class="list-group-item" style="background-color: #EF9A9A;">
               <a href="https://www.google.com/maps/search/Old+Town+White+Coffee+near+Perai,+Penang" target="_blank">
                 <strong>Old Town White Coffee</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #E53935;">
+            <li class="list-group-item" style="background-color: #EF9A9A;">
               <a href="https://www.google.com/maps/search/Secret+Recipe+near+Perai,+Penang" target="_blank">
                 <strong>Secret Recipe</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #D32F2F; color: #fff;">
+            <li class="list-group-item" style="background-color: #E57373; color: #fff;">
               <a href="https://www.google.com/maps/search/Tealive+near+Perai,+Penang" target="_blank">
                 <strong>Tealive</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #C62828;">
+            <li class="list-group-item" style="background-color: #E57373;">
               <a href="https://www.google.com/maps/search/Perai+Food+Court" target="_blank">
                 <strong>Perai Food Court</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #C62828;">
+            <li class="list-group-item" style="background-color: #EF5350;">
               <a href="https://www.google.com/maps/search/Pizza+Hut+near+Perai,+Penang" target="_blank">
                 <strong>Pizza Hut</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FF8A80;">
+            <li class="list-group-item" style="background-color: #EF5350;">
               <a href="https://www.google.com/maps/search/Burger+King+near+Perai,+Penang" target="_blank">
                 <strong>Burger King</strong>
               </a><br>
@@ -178,42 +178,42 @@
                 <strong>Big Apple Donuts & Coffee</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FF1744;">
+            <li class="list-group-item" style="background-color: #FF5252;">
               <a href="https://www.google.com/maps/search/Subway+near+Perai,+Penang" target="_blank">
                 <strong>Subway</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #D50000; color: #fff;">
-              <a href="https://www.google.com/maps/search/Sushi+King+near+Perai,+Penang" target="_blank">
-                <strong>Sushi King</strong>
-              </a><br>
-            </li>
-            <li class="list-group-item" style="background-color: #FF8A65;">
-              <a href="https://www.google.com/maps/search/Nando's+near+Perai,+Penang" target="_blank">
-                <strong>Nando's</strong>
-              </a><br>
-            </li>
-            <li class="list-group-item" style="background-color: #FF7043;">
+            <li class="list-group-item" style="background-color: #e80b0b;">
               <a href="https://www.google.com/maps/search/A&W+near+Perai,+Penang" target="_blank">
                 <strong>A&W</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FF5722;">
+            <li class="list-group-item" style="background-color: #e80b0b;">
               <a href="https://www.google.com/maps/search/PappaRich+near+Perai,+Penang" target="_blank">
                 <strong>PappaRich</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FF6D00; color: #fff;">
+            <li class="list-group-item" style="background-color: #D32F2F; color: #fff;">
+              <a href="https://www.google.com/maps/search/Sushi+King+near+Perai,+Penang" target="_blank">
+                <strong>Sushi King</strong>
+              </a><br>
+            </li>
+            <li class="list-group-item" style="background-color: #D32F2F;">
+              <a href="https://www.google.com/maps/search/Nando's+near+Perai,+Penang" target="_blank">
+                <strong>Nando's</strong>
+              </a><br>
+            </li>
+            <li class="list-group-item" style="background-color: #aa1818; color: #fff;">
               <a href="https://www.google.com/maps/search/Santai+Cafe+near+Perai,+Penang" target="_blank">
                 <strong>Santai Cafe</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FFA726;">
+            <li class="list-group-item" style="background-color: #aa1818;">
               <a href="https://www.google.com/maps/search/Chatime+near+Perai,+Penang" target="_blank">
                 <strong>Chatime</strong>
               </a><br>
             </li>
-            <li class="list-group-item" style="background-color: #FB8C00;">
+            <li class="list-group-item" style="background-color: #8a0202;">
               <a href="https://www.google.com/maps/search/Seoul+Garden+near+Perai,+Penang" target="_blank">
                 <strong>Seoul Garden</strong>
               </a><br>

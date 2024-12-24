@@ -87,7 +87,7 @@
     @endif
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo">
 
-    <h1>Login</h1>
+    <h1>Login {{ csrf_token() }}</h1>
     
     <form method="POST" action="user">
         @csrf

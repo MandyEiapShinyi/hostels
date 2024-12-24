@@ -51,17 +51,6 @@ class ProfileController extends Controller
         return view('hostelFee', compact('paymentReceipts', 'user'));
     }
 
-    public function reminder()
-    {
-        $today = Carbon::now();
-
-        $dueFees = Fee::where('due_date', '<=', $today)
-                ->where('status', 'unpaid')
-                ->get();
-        return view('reminderFee');
-    }
-
-
     public function ruleRoom()
     {
         $user = Auth::user();
@@ -77,11 +66,24 @@ class ProfileController extends Controller
         return view('serviceReport', compact('data', 'user'));
     }
 
+    public function reminder()
+    {
+        $user = Auth::user();
+        $serviceReports = Service::where('user_id', $user->id)
+                                   ->orderBy('is_serviced')
+                                   ->get();
+
+        // dd($serviceReports);
+        
+        return view('reminderFee', compact('serviceReports'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'subject' => 'required|string|max:5000',
             'message' => 'required|string|max:5000',
+            
         ]);
         // dd($request);
 
@@ -89,6 +91,7 @@ class ProfileController extends Controller
             'user_id' => Auth::user()->id,
             'subject' => $request->input('subject'),
             'message' => $request->input('message'),
+            'is_serviced' => 0,
         ]);
 
         return redirect('serviceReport')->with('success', 'Report submitted successfully!');
@@ -121,7 +124,7 @@ class ProfileController extends Controller
             return view('login');
         }
 
-        return view('changePassword'); // View for change password form
+        return view('changePassword');
     }
 
     public function sendmail(){
@@ -174,5 +177,32 @@ class ProfileController extends Controller
         return view('search-results', compact('results'));
     }
 
+    public function updateServiceStatus(Request $request)
+    {
+        try {
+            // Find the student by the provided student_id
 
+            $student = Service::find($request->student_id);
+
+            if ($student) {
+                // Update the 'is_serviced' field of the student
+                $student->is_serviced = $request->is_serviced;
+                $student->save();
+
+                return response()->json(['success' => true], 200); // Successfully updated
+            }
+
+            // If the student is not found, return a 404 error
+            return response()->json(['error' => 'Student not found'], 404);
+
+        } catch (\Exception $e) {
+            // Handle exceptions by returning a 500 error with the message
+            return response()->json([
+                'error' => 'An error occurred while updating the service status',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+
+
+    }
 }

@@ -13,14 +13,14 @@
             color: #333;
         }
         .custom-card {
-            max-width: 750px;
+            max-width: 800px;
             margin: auto;
             margin-top: 80px;
             background: linear-gradient(145deg, #5b6ec4, #110f47);
             border-radius: 20px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
             padding: 40px 50px;
-            height: 750px;
+            height: 1100px;
         }
         .card-header {
             background: transparent;
@@ -146,6 +146,23 @@
                     <label for="person_quantity" class="form-label">Person Quantity :</label>
                     <input type="number" class="form-control" id="person_quantity" name="person_quantity" value="{{ $rooms->person_quantity }}" required>
                 </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Room Image :</label>
+                
+                    <!-- Display the current room image if available -->
+                    <div class="mb-3">
+                        @if($rooms->image)
+                            <img src="{{ asset('storage/' . $rooms->image) }}" alt="Current Room Image" class="img-thumbnail" style="max-width: 150px;margin:auto;">
+                        @else
+                            <img src="https://via.placeholder.com/150" alt="No Image Available" class="img-thumbnail" style="max-width: 150px;">
+                        @endif
+                    </div>
+                
+                    <!-- File input for uploading a new image -->
+                    <input class="form-control" type="file" id="image" name="image" style="height: 60px;" required>
+                </div>                
+                
     
                 <div class="mb-3">
                     <label for="details" class="form-label">Details :</label>
@@ -155,7 +172,7 @@
                 <!-- Action buttons -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-submit">Update Room</button>
-                    <a href="/admin_show" class="btn btn-secondary">Back To Index</a>
+                    <a href="{{ route('adminBack', 'data')}}" class="btn btn-secondary">Back To Index</a>
                 </div>
             </form>
     </div>

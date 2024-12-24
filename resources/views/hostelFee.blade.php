@@ -22,7 +22,7 @@
              padding: 20px;
              text-align: center;
              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-             height: 700px;
+             height: 629px;
              display: flex;
              flex-direction: column;
              justify-content: space-between;
@@ -45,12 +45,12 @@
              font-size: 17px;
          }
          .tab:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
  
          .sidebar .tab.active {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
          .content-container {
@@ -224,22 +224,7 @@
              opacity: 0;
              transition: 1s;
          }
-         .input-div:hover{
-             opacity: 10;
-         }
-         .icon {
-             color: lightpink;
-             font-size: 2rem;
-             cursor: pointer;  
-             font-weight: 600;
-         }
-         .input {
-             position: absolute;
-             opacity: 0;
-             width: 100%;
-             height: 100%;
-             cursor: pointer !important;
-         }
+         
          #signOutLink {
              color: white;
              text-decoration: none;
@@ -254,7 +239,7 @@
              font-family: 'Times New Roman';
          }
          #signOutLink:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
  
@@ -276,12 +261,14 @@
             <div>
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
-                <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
+                <div class="tab active"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
+                {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
         </div>
+               <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
                     <button type="submit"  id="signOutLink">
@@ -308,7 +295,7 @@
                     <tbody>
                         @foreach ($paymentReceipts as $payment)
                             <tr>
-                                <td>{{ $payment->id }}</td>
+                                <td>{{ $loop->iteration}}</td>
                                 <td>
                                     @if (Str::endsWith($payment->image, '.pdf'))
                                         <!-- If it's a PDF, display a link to view the PDF in a new tab -->

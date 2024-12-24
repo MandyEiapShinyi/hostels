@@ -137,7 +137,7 @@
                     <!-- Submit and Back Buttons -->
                     <div class="d-flex justify-content-between mt-4">
                         <button type="submit" class="btn btn-submit">Update Furniture</button>
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url('/admin_show') }}';">Back To Index</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('adminBack', 'furniture')}}';">Back To Index</button>
                     </div>
                 </form>
             </div>

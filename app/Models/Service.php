@@ -13,6 +13,7 @@ class Service extends Model
         'user_id',
         'subject',
         'message',
+        'is_serviced',
     ];
 
     public function user()

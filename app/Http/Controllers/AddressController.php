@@ -9,7 +9,7 @@ class AddressController extends Controller
 {
     public function showAddRoomForm()
     {
-        $addresss = Address::all();
+        $addresses = Address::where('status', true)->get();
         return view('adminIndex', compact('address'));
     }
 
@@ -58,7 +58,10 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::findOrFail($id);
-        $address->delete();
+        $address->update([
+            'status' => false,
+        ]);
+        // $address->delete();
 
         return redirect("/admin_show")->with('success', 'Address deleted successfully.')->with("page","data");
     }

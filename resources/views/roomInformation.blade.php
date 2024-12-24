@@ -8,51 +8,51 @@
 
     <style>
         body {
-             background-color: #11113c;
-             color: #333;
-             font-family: 'Times New Roman';
-         }
-         .container {
-             display: flex;
-             max-width: 1200px;
-             margin: 0 auto;
-             padding: 20px;
-         }
-         .sidebar {
-             width: 20%;
-             background-color: #ffffff;
-             padding: 20px;
-             text-align: center;
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-             height: 700px;
-             display: flex;
-             flex-direction: column;
-             justify-content: space-between;
-             margin-top: 30px;
-         }
-         .sidebar img {
-             border-radius: 50%;
-             margin-bottom: 15px;
-         }
+            background-color: #11113c;
+            color: #333;
+            font-family: 'Times New Roman';
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: 629px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .sidebar img {
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
          .sidebar .tab {
-             display: block;
-             padding: 10px;
-             background-color: #11113c;
-             border-radius: 5px;
-             cursor: pointer;
-             font-weight: bold;
-             text-align: center;
-             color: #000;
-             margin-bottom: 10px;
-             font-size: 17px;
-         }
+            display: block;
+            padding: 10px;
+            background-color: #11113c;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
          .tab:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
  
          .sidebar .tab.active {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
          .content-container {
@@ -67,35 +67,7 @@
          .tab-content {
              display: none;
          }
-         .tab-content.active {
-             display: block;
-         }
-         .form-group {
-             margin-bottom: 15px;
-         }
-         .form-group label {
-             font-weight: bold;
-             padding: 20px;
-         }
-         .form-group input {
-             font-style: italic;
-             width: 100%;
-             max-width: 500px;
-             padding: 10px;
-             border: 1px solid #ccc;
-             border-radius: 4px;
-             border-color: #11113c;
- 
-         }
-         .save-button {
-             background-color: #11113c;
-             color: #fff;
-             padding: 10px 20px;
-             border: none;
-             border-radius: 4px;
-             cursor: pointer;
-             margin-top: 20px;
-         }
+
          .tab-content h2 {
              color: #333;
              font-size: 24px;
@@ -137,9 +109,6 @@
          .room-details ul li {
              font-size: 15px;
              color: #555;
-         }
-         .delete-button {
-             background-color: #11113c;
          }
          .buttons {
              display: flex;
@@ -212,36 +181,7 @@
              height: 100%;
              border-radius: 1px;
          }
-         .input-div {
-             position: absolute;
-             width: 100px;
-             height: 100px;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             overflow: hidden;
-             top: 0;
-             left: 0;
-             background: rgba(255, 255, 255, 0.5);
-             opacity: 0;
-             transition: 1s;
-         }
-         .input-div:hover{
-             opacity: 10;
-         }
-         .icon {
-             color: lightpink;
-             font-size: 2rem;
-             cursor: pointer;  
-             font-weight: 600;
-         }
-         .input {
-             position: absolute;
-             opacity: 0;
-             width: 100%;
-             height: 100%;
-             cursor: pointer !important;
-         }
+         
  
          #signOutLink {
              color: white;
@@ -279,18 +219,18 @@
         <p>Email: {{ Auth::user()->email }}</p>
             <div>
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
-                <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
+                <div class="tab active"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
+                {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
-        </div>
+        </div>        
+               <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
-                    <button type="submit"  id="signOutLink">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </button>
+                    <button type="submit"  id="signOutLink" style="height:40px;">Sign Out</button>
                 </form>             
         </div>
 

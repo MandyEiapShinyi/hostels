@@ -23,7 +23,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            height: 700px;
+            height: 629px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -46,12 +46,12 @@
             font-size: 17px;
         }
         .tab:hover {
-            background-color: #9bdfff;
+            background-color: #5b6ec4;
             border-left: 4px solid #333;
         }
 
         .sidebar .tab.active {
-            background-color: #9bdfff;
+            background-color: #5b6ec4;
             border-left: 4px solid #333;
         }
         .content-container {
@@ -172,7 +172,7 @@
             font-family: 'Times New Roman';
         }
         #signOutLink:hover {
-            background-color: #9bdfff;
+            background-color: #5b6ec4;
             border-left: 4px solid #333;
         }
 
@@ -197,14 +197,16 @@
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
-                <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
+                {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
+                <div class="tab active"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
-        </div>
+        </div>        
+               <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
-                    <button type="submit"  id="signOutLink">
+                    <button type="submit"  id="signOutLink" style="margin-top:15px;height:40px;">
                         <i class="fas fa-sign-out-alt"></i> Sign Out
                     </button>
                 </form>             
@@ -212,37 +214,41 @@
 
         <!-- Content Container -->
         <div class="content-container">
-           
-               <div style="max-width: 600px; padding: 30px;">
-                   <h3 style="font-size: 20px; color: #5b6ec4;  text-align: center; font-family: Arial, sans-serif;">
-                     Policy and Notices
-                   </h3>
-                   
-                   <p style="font-size: 15px; color: #555; line-height: 1.8; font-family: 'Verdana', sans-serif;">
-                     At the time, students are required to follow the following rules:
-                   </p>
-                   
-                   <ul style="font-size: 14px; color: #444; line-height: 1.8; padding-left: 40px; margin-bottom: 30px; font-family: 'Verdana', sans-serif;">
-                     <li>No smoking in the hostel</li>
-                     <li>No drinking in the hostel</li>
-                     <li>No partying in the hostel</li>
-                     <li>Rent should be given up to 6 months</li>
-                   </ul>
-                 
-                   <h4 style="font-size: 20px; color: #5b6ec4; margin-bottom: 10px; font-family: Arial, sans-serif;">General Conduct</h4>
-                   <p style="font-size:14px; color: #555; line-height: 1.8; margin-bottom: 20px; font-family: 'Verdana', sans-serif;">
-                     - Respect fellow residents, staff, and college property.<br>
-                     - Avoid disruptive activities that may disturb others.<br>
-                     - Maintain cleanliness in common areas and your own room.
-                   </p>
-                   
-                   <h4 style="font-size: 20px; color: #5b6ec4; margin-bottom: 10px; font-family: Arial, sans-serif;">Safety and Security</h4>
-                   <p style="font-size: 15px; color: #555; line-height: 1.8; font-family: 'Verdana', sans-serif;">
-                     - Keep your room keys secure and report any loss immediately.<br>
-                     - Do not allow unauthorized visitors into the hostel premises.
-                   </p>
-        </div>
-    </div>
+            <div style="max-width: 600px; padding: 20px;">
+                <h3 style="font-size: 20px; color: #5b6ec4;  text-align: center;">
+                  Policy and Notices
+                </h3>
+                
+                <p style="font-size: 15px; color: #555; line-height: 1.5;">
+                  At the time, students are required to follow the following rules:
+                </p>
+                
+                <p style="font-size: 15px; color: #444; line-height: 1.5; padding-left: 40px; margin-bottom: 30px;">
+                 1. Entering someone else’s room without permission is strictly prohibited to respect their privacy. <br>
+                 2. Keep the Room Clean <br>
+                 3. No Going Out After 10 PM <br>
+                 4. No Bringing Outsiders into Your Room <br>
+                 5. Pay Hostel Fees on Time for 6 months<br>
+                </p>
+              
+                <h4 style="font-size: 18px; color: #5b6ec4; margin-bottom: 10px;">General Conduct</h4>
+                <p style="font-size: 15px; color: #555; line-height: 1.5; margin-bottom: 20px;">
+                  - Respect fellow residents, staff, and college property.<br>
+                  - Avoid disruptive activities that may disturb others.<br>
+                  - Maintain cleanliness in common areas and your own room.
+                </p>
+                
+                <h4 style="font-size: 18px; color: #5b6ec4; margin-bottom: 5px;">Safety and Security</h4>
+                <p style="font-size: 15px; color: #555; line-height: 1.5;">
+                  - Keep your room keys secure and report any loss immediately.<br>
+                  - Do not allow unauthorized visitors into the hostel premises.
+                </p>
+                <h4 style="font-size: 18px; color: #5b6ec4; margin-bottom: 5px;">Complain and Grievance Process</h4>
+                <p style="font-size: 15px; color: #555; line-height: 1.5;">
+                  Any issues or complaints can be raised with the hostel warden or management.<br>
+                </p>
+     </div>
+ </div>
 </body>
 
 <script>

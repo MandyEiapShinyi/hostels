@@ -5,7 +5,7 @@
     <title>Profile Settings</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    
     <style>
         body {
              background-color: #11113c;
@@ -24,7 +24,7 @@
              padding: 20px;
              text-align: center;
              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-             height: 700px;
+             height: 629px;
              display: flex;
              flex-direction: column;
              justify-content: space-between;
@@ -47,12 +47,12 @@
              font-size: 17px;
          }
          .tab:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
  
          .sidebar .tab.active {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
          .content-container {
@@ -257,9 +257,10 @@
              font-family: 'Times New Roman';
          }
          #signOutLink:hover {
-             background-color: #9bdfff;
+             background-color: #5b6ec4;
              border-left: 4px solid #333;
          }
+
      </style>
 </head>
 <body>
@@ -278,25 +279,59 @@
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
                 <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
-                <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div>
+                {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>
+                <div class="tab active"><a href="/historySR" onclick="reloadPage()">History Service Report</a></div>
             </div>
         </div>
+               <br><br><br><br>
                <form id="logout-form" action="{{ route('signOut') }}" method="POST" style="display: inline;"  onsubmit="return confirm('Are you sure to logout??');">
                     @csrf
-                    <button type="submit"  id="signOutLink">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </button>
+                    <button type="submit"  id="signOutLink">Sign Out</button>
                 </form>             
         </div>
 
         <!-- Content Container -->
         <div class="content-container">
-                
-              </div>  
-        </div>
+            <h2>History Service Report</h2>
+              <div class="table-section">
+                  <h2>History Service Report Table</h2>
+                  <table id="example1" class="table table-bordered mt-3">
+                      <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($serviceReports as $service)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $service->subject }}</td>
+                            <td>{{ $service->message }}</td>
+                            <td>
+                                @if($service->is_serviced == 1)
+                                <div class="alert alert-success" style="padding: 10px;color:green;">
+                                    Service is completed successfully.
+                                </div>
+                                @else
+                                <div class="alert alert-danger" style="padding: 10px;color:red;">
+                                    Service is pending or not completed.
+                                </div>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>                    
+                  </table>
+              </div>
+          </div>  
     </div>
+</div>
+
 </body>
 
 <script>

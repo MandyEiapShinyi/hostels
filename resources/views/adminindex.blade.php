@@ -19,11 +19,11 @@
             margin: 0;
             padding: 0;
             display: flex;
-            height: 100vh;
+            height: 110vh;
         }
 
         .sidebar {
-            width: 200px;
+            width: 30vh;
             background-color: #ffffff;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -34,6 +34,7 @@
         .sidebar h2 {
             font-size: 22px;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .tab {
@@ -67,7 +68,6 @@
             flex: 1;
             padding: 20px;
             background-color: #fff;
-            overflow-y: auto;
         }
 
         .tab-content {
@@ -146,18 +146,36 @@
         .btn-submit {
             background-color: #00204a;
             color: white;
-            /* padding: 10px 20px; */
             border-radius: 15px;
             text-decoration: none;
             font-size: 14px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
+
+          
+
+        .btn-submit:hover {
+            background-color: #11113c;
+            color: rgb(255, 255, 255);  
+            transform: scale(1.05);
+        }
+
         .btn-action {
             background-color: #4c93ff;
             color: white;
             border-radius: 15px;
             text-decoration: none;
             font-size: 14px;
+            width: 70px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
+
+        .btn-action:hover {
+            color: rgb(255, 255, 255);  
+            transform: scale(1.05);
+            color: black;
+        }
+
         .btn-delete {
             background-color: #ff60aa;
             color: white;
@@ -165,15 +183,19 @@
             text-decoration: none;
             font-size: 14px;
             margin-top: 0px;
+            width: 70px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
-        .btn-submit:hover {
-            background-color: #11113c;
-            color: rgb(255, 255, 255);
+        .btn-delete:hover {
+            color: rgb(255, 255, 255);  
+            transform: scale(1.05);
+            color: black;
         }
+
         .title1 {
             font-weight: bold;
-            font-size: 18px;
+            font-size: 23px;
         }
         .dash-box {
             padding: 20px;
@@ -339,7 +361,7 @@
             border-radius: 12px;
             padding: 9px;
             font-size: 16px;
-            width: 400px;
+            width: 430px;
             border: 1px solid #dcdcdc;
             transition: all 0.3s ease;
         }
@@ -356,6 +378,12 @@
             text-decoration: none;
             font-size: 14px;
             margin-top: 0px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .room_delete:hover {
+            transform: scale(1.05);
+            color: black;
         }
 
         .room_edit {
@@ -364,10 +392,22 @@
             border-radius: 15px;
             text-decoration: none;
             font-size: 14px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .room_edit:hover {
+            transform: scale(1.05);
         }
 
         .edit_a {
             color: white;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .edit_a:hover {
+            transform: scale(1.05);
+            color: black;
+            text-decoration: none;
         }
 
         .admin-back {
@@ -391,7 +431,7 @@
         .admin-header {
             background-color: #fffdfd;
             padding: 10px 20px;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
             text-align: center;
             border-radius: 8px;
         }
@@ -403,33 +443,7 @@
             margin-top: 20px;
         }
 
-        .green-alert {
-            background-color: #b7e0b8; /* Green background */
-            color: white; /* White text */
-            padding: 15px;
-            border-radius: 5px; /* Rounded corners */
-            font-family: Arial, sans-serif;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
-            position: relative;
-            height: 50px;
-            max-width: 400px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .red-alert {
-            background-color: #cb8686; /* Red background */
-            color: white; /* White text */
-            padding: 15px;
-            border-radius: 5px; /* Rounded corners */
-            font-family: Arial, sans-serif;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            height: 50px;
-            max-width: 400px;
-            text-align: center;
-        }
-
+        
         .close-alert-btn {
             background-color: transparent; /* No background */
             border: none; /* No border */
@@ -496,19 +510,120 @@
             color: white; /* White text for labels */
         }
 
+        input[type="checkbox"] {
+            margin: 10px;
+        }
+
+        .message-box {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .green-alert {
+            background-color: #b7e0b8;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            z-index: 999999;
+            width: 350px;
+
+            /* Initial state */
+            /* opacity: 0;
+            transform: translateX(100px); */
+            
+            /* Transition for opacity and position */
+            animation: slideIn 5s ease-out forwards;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* Add a class to trigger the animation */
+        .green-alert.show {
+            /* Final state: full visibility */
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Optional: Add keyframe for smoother animations */
+        @keyframes slideIn {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        .green-alert.show {
+            animation: slideIn 0.5s ease-out;
+        }
+
+
+        .close-alert-btn {
+            background-color: transparent; /* No background */
+            border: none; /* No border */
+            color: black; /* White 'X' */
+            font-size: 16px; /* Slightly larger 'X' */
+            position: absolute; /* Position the button at the top-right */
+            /* top: -4px; */
+            right: 15px;
+            cursor: pointer; /* Pointer cursor for the button */
+        }
+
+        .close-alert-btn:hover {
+            color:; /* Lighten the color on hover */
+        }
+
+        .save-button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .save-button:hover {
+            background-color: #4a5aa8;
+        }
+        .save-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition */
+        }
+
+        .save-button:hover {
+            background-color: #ea232e;
+            transform: scale(1.05); /* Add a slight scaling effect on hover */
+        }
+
         .form-controlle {
+            width:100%;
             border-radius: 12px;
-            padding: 15px;
+            padding:15px 15px 15px 0px;
             font-size: 16px;
             margin-bottom: 20px;
             border: 1px solid #dcdcdc;
             transition: all 0.3s ease;
+            color:black;
+            background-color:white;
         }
         .form-controlle:focus {
             border-color: #7588f0;
             box-shadow: 0 0 10px rgba(117, 136, 240, 0.4);
         }
-        
+
     </style>
 </head>
 <body>
@@ -518,7 +633,7 @@
             <img onclick="location.reload();" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBKvfIJGpqKsp0RvIiV0T1CJn4wPiu48d7g&s" alt="Logo" style="width: 100%; margin-bottom: 20px;">
         <br>
         <span class="small-grey-text">Welcome, Administrator</span>
-        <h2>Admin Panel</h2>
+        <h2><i>Admin Panel</i></h2>
     
         <a class="tab active" id="tabhome" onclick="showTab('home')">
             <i class="fas fa-home"></i> Dashboard
@@ -544,7 +659,7 @@
             <i class="fas fa-comments"></i> Service Report
         </a>
     
-        <a class="tab" id="tabFees" onclick="showTab('fees')">
+        <a class="tab" id="tabfees" onclick="showTab('fees')">
             <i class="fa-solid fa-money-check"></i> Fees
         </a>
 
@@ -570,19 +685,19 @@
             <!-- Dashboard Overview Cards -->
             <div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px;">
                 <div class="dash-box">
-                    <h3>Total Rooms</h3>
+                    <h3 class="title1">Total Rooms</h3>
                     <p style="font-size: 30px;">{{ $totalRooms}}</p>
                 </div>
                 <div class="dash-box2">
-                    <h3>Available Rooms</h3>
+                    <h3 class="title1">Available Rooms</h3>
                     <p style="font-size: 30px;">{{ $totalPersonQuantity }}</p>
                 </div>
                 <div class="dash-box3">
-                    <h3>Service Report</h3>
+                    <h3 class="title1">Service Report</h3>
                     <p style="font-size: 30px;">{{ $service }}</p>
                 </div>
                 <div class="dash-box4">
-                    <h3>Total Students</h3>
+                    <h3 class="title1">Total Students</h3>
                     <p style="font-size: 30px;">{{ $totalStudents ?? 0 }}</p>
                 </div>
             </div>
@@ -602,12 +717,7 @@
             @if(session('success'))
                 <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close" onclick="closeAlert()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close" onclick="closeAlert()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
@@ -646,7 +756,7 @@
                             <input type="hidden" name="address_id" id="address_id" value="">
 
                             <div class="mb-3">
-                                <label for="user_id" class="form-label">Student</label>
+                                <label for="user_id" class="form-label">Student :</label>
                                 <select class="form-control" id="user_id" name="user_id" required>
                                     @if($users->isEmpty())
                                         <option value="">No Users Available</option>
@@ -659,25 +769,37 @@
 
                                 </select>
                                 <p id="checkStudents"></p>
+                                @error('user_id')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         
                             <div class="mb-3">
-                                <label class="form-label" for="phone_number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="0123456789" required>
+                                <label class="form-label" for="phone_number">Phone Number :</label>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="012-345-6789" required>
+                                @error('phone_number')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         
                             <div class="mb-3">
-                                <label for="emails" class="form-label">Email</label>
+                                <label for="emails" class="form-label">Email :</label>
                                 <input class="form-control" id="email" name="email" placeholder="Email" required/>
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label for="date" class="form-label">Date</label>
+                                <label for="date" class="form-label">Date :</label>
                                 <input type="date" class="form-control" id="date" name="date" required />
+                                @error('date')
+                                    {{ $message }}
+                                @enderror
                             </div>                            
                         
                             <div class="mb-3">
-                                <label for="room_id" class="form-label">Room</label>
+                                <label for="room_id" class="form-label">Room :</label>
                                 <select class="form-control" id="selected_room" name="room_id">
                                     @if($rooms->isEmpty())
                                         <option value="">No Room Assigned</option>
@@ -689,13 +811,22 @@
                                     @endif
                                 </select>
                                 <p id="message"></p>
+                                @error('room_id')
+                                    {{ $message }}
+                                @enderror
                             </div>
 
                             <!-- Image Upload Input -->
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <input type="file" name="image" class="form-control"  style="height: 50px;" required>
-                            </div>
+                            </div> --}}
+
+                            <label for="image" class="form-label">Upload Image :</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="image" id="customFile" style="height: 50px;width:100px;" required>
+                                    <label class="custom-file-label" for="file" id="fileLabel">Choose file</label>
+                                </div>
                         
                             <div class="text-right">
                                 <button type="submit" class="btn btn-add">Add Student</button>
@@ -737,12 +868,13 @@
                         @endif
                     </td>                    
                     <td>
+                        <button class="room_edit"><a href="{{ route('students.edit', $student->id) }}" class="edit_a">Edit</a></button>
                         <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this student?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="room_delete">Delete</button>
                         </form>                        
-                    <button class="room_edit"><a href="{{ route('students.edit', $student->id) }}" class="edit_a">Edit</a></button>
+                    
                     </td>
                 </tr>
             @endforeach
@@ -753,19 +885,14 @@
         <div id="data" class="tab-content">
             
             @if(session('success'))
-                <div id="custom-alert1" class="green-alert" role="alert">
+                <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert1()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert1" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert1()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
             <p>Manage The Room Address Data</p>
-            <a href="/addresses/create" class="btn btn-submit">Add Address</a>
+            <a href="/addresses/create" class="btn btn-submit" style="width: 300px;">Add Addresses</a>
             
             <table class="table table-bordered">
                 <thead>
@@ -787,11 +914,12 @@
                         <td>{{ $address->address }}</td>
                         <td>{{ $address->room_quantity }}</td>
                         <td> 
+                            
                             <form action="{{ route('addresses.destroy', $address->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this address?');">
+                                <button class="room_edit"><a href="{{ route('addresses.edit', $address->id) }}" class="edit_a">Edit</a></button>
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-action">Edit</a>
-                                <button type="submit" class="btn btn-delete">Delete</button>
+                                <button type="submit" class="room_delete">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -838,12 +966,17 @@
                                     <label for="person_quantity" class="form-label text-white">Person Quantity :</label>
                                     <input type="number" class="form-control" id="person_quantity" min="1" name="person_quantity" placeholder="Number of persons" required>
                                 </div>
-                                <label for="room_image" class="form-label text-white">Room Image :</label>
+
+                                <div class="form-group">
+                                    <label for="room_image" class="form-label text-white">Room Image :</label>
+                                    <input type="file" class="form-controlle" id="image" name="image" required>
+                                </div>
+
+                                {{-- <label for="room_image" class="form-label text-white">Room Image :</label>
                                 <div class="custom-file">
-                                   
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                  </div>
+                                    <input type="file" class="custom-file-input" name="image" id="customFile">
+                                    <label class="custom-file-label" for="customFile" id="fileLabel">Choose file</label>
+                                </div> --}}
                             
                                 <div class="form-group"><br>
                                     <label for="details" class="form-label text-white">Details :</label>
@@ -901,11 +1034,11 @@
                                 </td>
                                 <td>{{ $room->details }}</td>
                                 <td>
+                                    <button class="room_edit"><a href="{{ route('rooms.edit', $room->id) }}" class="edit_a">Edit</a></button>
                                     <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display: inline;">
                                         @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-action">Edit</a>
-                                        <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
+                                        
+                                        <button type="submit" class="room_delete" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -918,19 +1051,14 @@
         <div id="furniture" class="tab-content"> 
             
             @if(session('success'))
-                <div id="custom-alert2" class="green-alert" role="alert">
+                <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close2" onclick="closeAlert2()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert2" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close2" onclick="closeAlert2()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
             <p>Manage The Room Furniture</p>
-            <a href="/addFurniture"  class="btn btn-submit">Add Furniture</a>
+            <a href="/addFurniture"  class="btn btn-submit" style="width: 300px;">Add Furniture</a>
             
             <table>
                 <tr>
@@ -964,14 +1092,9 @@
         <div id="registerstudent" class="tab-content">
             <h5 class="fontx">Register Student</h5>
             @if(session('success'))
-                <div id="custom-alert3" class="green-alert" role="alert">
+                <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close3" onclick="closeAlert3()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert3" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close3" onclick="closeAlert3()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
@@ -1018,7 +1141,7 @@
 
         <div class="mb-3">
             <label for="phone_number">Phone Number :</label><br>
-            <input class="form-controll" type="text" name="phone_number" id="phone_number" placeholder="Phone Number" required><br>
+            <input class="form-controll" type="text" name="phone_number" id="phone_number" placeholder="0123456789" required><br>
         </div>
 
         @error('phone_number')
@@ -1047,6 +1170,8 @@
                     <th>Room Name</th>
                     <th>Subject</th>
                     <th>Message</th>
+                    <th>Result</th>
+                    <th>Action</th>
                 </tr>
             </thead>
                 <tbody>
@@ -1058,6 +1183,16 @@
                     <td>{{ $serviceReport->user->student->room->room_name }}</td>
                     <td>{{ $serviceReport->subject}}</td>
                     <td>{{ $serviceReport->message }}</td>
+                    <td>
+                        <div class="message-box" data-id="{{ $serviceReport->id }}" style="color: {{ $serviceReport->is_serviced ? 'green' : 'red' }}">
+                            {{ $serviceReport->is_serviced ? 'Service Completed' : 'No Service Yet' }}
+                        </div>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="service-checkbox" data-id="{{ $serviceReport->id }}" 
+                               {{ $serviceReport->is_serviced ? 'checked' : '' }} 
+                               onclick="toggleServiceStatus({{ $serviceReport->id }})">
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -1070,14 +1205,9 @@
         <div id="fees" class="tab-content">
 
             @if(session('success'))
-                <div id="custom-alert4" class="green-alert" role="alert">
+                <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close4" onclick="closeAlert4()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert4" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close4" onclick="closeAlert4()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
@@ -1138,7 +1268,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="uploadModalLabel">Upload Payment Proof</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>X
                         </button>
                     </div>
                     <div class="modal-body">
@@ -1146,7 +1276,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="image">Upload Image</label>
-                                <input type="file" class="form-control-file" id="image" name="image" required>
+                                <input type="file" class="form-controlle" id="image" name="image" required>
                             </div>
 
                             <div class="form-group">
@@ -1166,14 +1296,9 @@
         <div id="history" class="tab-content">
 
             @if(session('success'))
-                <div id="custom-alert5" class="green-alert" role="alert">
+                <div id="custom-alert" class="green-alert" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close5" onclick="closeAlert5()">X</button>
-                </div>
-            @elseif(session('error'))
-                <div id="custom-alert5" class="red-alert" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close5" onclick="closeAlert5()">X</button>
+                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
             @endif
 
@@ -1181,6 +1306,7 @@
 
             <table id="example" class="table table-bordered mt-3">
                 <thead>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Payment Receipt</th>
                     <th>Date</th>
@@ -1190,7 +1316,7 @@
                 <tbody>
                 @foreach ($paymentReceipts as $paymentReceipt)
                 <tr>
-                    
+                    <td>{{ $loop->iteration}}</td>
                     <td>{{ $paymentReceipt->user->name }}</td>
                     <td>
                         @if (Str::endsWith($paymentReceipt->image, '.pdf'))
@@ -1262,11 +1388,17 @@
             link.classList.remove('active');
         });
         let page = "{{ session()->has('page') ? session('page') : 'home' }}";
+        
         document.querySelector(`#tab${page}`).classList.add("active");
         document.querySelector(`#${page}`).classList.add('active');
 
     }
 
+  
+
+    
+
+    // afterbackshowcurrecttab()
     aftersubmitshowcurrecttab()
     
 </script>
@@ -1577,5 +1709,63 @@ new DataTable('#example2');
         document.getElementById('custom-alert5').style.display = 'none';
     }
 </script>
+
+<script>
+    // Get the input and the label elements
+    var fileInput = document.getElementById('customFile');
+    var fileLabel = document.getElementById('fileLabel');
+
+    // Listen for a change event on the file input
+    fileInput.addEventListener('change', function(event) {
+        // Get the name of the selected file
+        var fileName = event.target.files[0].name;
+        
+        // Update the label text with the file name
+        fileLabel.textContent = fileName;
+    });
+</script>
+<script>
+    function toggleServiceStatus(studentId) {
+        var checkbox = document.querySelector(`input[data-id='${studentId}']`);
+        var messageBox = document.querySelector(`.message-box[data-id='${studentId}']`);
+
+        $.ajax({
+            url: '{{ route('updateServiceStatus')}}',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                student_id: studentId,
+                is_serviced: checkbox.checked ? 1 : 0
+            },
+            success: function(response) {
+                if (checkbox.checked) {
+                    messageBox.style.color = 'green';
+                    messageBox.textContent = 'Service Completed';
+                    alert('Service completed successfully!');
+                } else {
+                    messageBox.style.color = 'red';
+                    messageBox.textContent = 'No Service Yet';
+                }
+            },
+            error: function() {
+                alert('Error while updating the service status');
+            }
+        });
+    }
+</script>
+
+<script>
+    window.onload = function() {
+      const alert = document.querySelector('.green-alert'); // Target the green alert element
+  
+      if (alert) {
+          setTimeout(function() {
+              alert.style.display = 'none'; // Hide the alert after 4 seconds
+          }, 4000); // 4 seconds in milliseconds
+      }
+  }
+  
+  </script>
+
 </body>
 </html>

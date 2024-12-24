@@ -39,7 +39,7 @@ class StudentFeeController extends Controller
             $student->date=$request->date;
             $student->save();
 
-            return back()->with('success', 'Payment receipt uploaded successfully!');
+            return redirect('/admin_show')->with('success', 'Payment receipt uploaded successfully!')->with("page","fees");
         }
 
         return back()->with('error', 'There was an error uploading the file.');

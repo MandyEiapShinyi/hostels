@@ -41,17 +41,20 @@
       <div class="row">
         <div class="col-lg-8 col-md-8">
           <ul class="info">
-            <li><i class="fa fa-envelope" href="mailto:info@synergycollege.edu.my" ></i> info@synergycollege.edu.my</li>
-            <li><i class="fa fa-map"></i> 32 & 34 Jalan Perai Jaya 4, Bandar Perai Jaya, Perai, Malaysia</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="https://www.facebook.com/synergycollege.edu.my"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://synergycollege.edu.my/" target="_blank"><i class="fab fa-google"></i></a></li>
-            <li><a href="https://www.tiktok.com/@synergy.college"><i class="fab fa-tiktok"></i></a></li>
-            <li><a href="https://wa.me/60164456145"><i class="fab fa-whatsapp"></i></a></li>
-          </ul>
+            <li>
+              <i class="fa fa-envelope"></i>
+              <a href="mailto:info@synergycollege.edu.my" style="text-decoration: none; color: inherit;">info@synergycollege.edu.my</a>
+            </li>
+            <li>
+              <i class="fa fa-map"></i>
+              <a 
+                href="https://www.google.com/maps?q=32+%26+34+Jalan+Perai+Jaya+4,+Bandar+Perai+Jaya,+Perai,+Malaysia" 
+                target="_blank" 
+                style="text-decoration: none; color: inherit;">
+                32 & 34 Jalan Perai Jaya 4, Bandar Perai Jaya, Perai, Malaysia
+              </a>
+            </li>
+        </ul>
         </div>
       </div>
     </div>
@@ -65,7 +68,7 @@
               <nav class="main-nav">
                 <!-- ***** Logo Start ***** -->
                 <a href="/index" class="logo">
-                  <img style= "width: 73px; height: 65px" src="assets/images/synergy.png" alt="">
+                  <img style= "height: 65px" src="assets/images/synergy.png" alt="">
                 </a>
                 <!-- ***** Logo End ***** -->
                 <!-- ***** Menu Start ***** -->

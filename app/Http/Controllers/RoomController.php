@@ -7,13 +7,14 @@ use App\Models\Address;
 use App\Models\Student;
 use App\Models\Furniture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RoomController extends Controller
 {
     public function showAddRoomForm()
     {
         $furnitures = Furniture::all();
-        $rooms = Room::all();
+        $rooms = Room::where('status', true)->get();
         // dd($rooms);
         return view('adminAddRoom', compact('furnitures', 'rooms'));
     }
@@ -73,12 +74,19 @@ class RoomController extends Controller
             'furniture' => 'nullable|array',
             'room_fee' => 'required',
             'person_quantity' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'details' => 'nullable|string',
         ]);
         // dd($request);
 
         $rooms = Room::findOrFail($id);
         // dd(json_encode($request->furniture));
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('image', 'public');
+            $rooms->image = $imagePath;
+        }
+
         $rooms->update([
             'room_name' => $request->room_name,
             'furniture' => json_encode($request->furniture),
@@ -90,11 +98,16 @@ class RoomController extends Controller
         return redirect('/admin_show')->with('success', 'Room updated successfully.')->with("page","data");
     }
 
-    public function delete($id)
+    public function status($id)
     {
         $room = Room::findOrFail($id);
-        $room->delete();
+        // dd($room);
+        $room->update([
+            'status' => false,
+        ]);
 
-        return redirect('/admin_show')->with('success', 'Room deleted successfully.')->with("page","data");
+        
+
+       return redirect('/admin_show')->with('success', 'Room deleted successfully.')->with("page","data");
     }
 }

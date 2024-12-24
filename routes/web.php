@@ -33,6 +33,8 @@ Route::get('/', function () {
 //index
 Route::get('/index', [IndexController::class, 'index']);
 
+
+
 //review
 Route::post('/review', [IndexController::class, 'review']);
 
@@ -49,6 +51,9 @@ Route::post('/adminUser', [AdminController::class, 'adminUser']);
 //index
 Route::get('/admin_show', [StudentController::class, 'adminPanel'])->name('admin.panel')->middleware(checkauth::class.':admin');
 
+Route::get('admin_back/{page}',function($page){
+    return redirect()->route("admin.panel")->with("page",$page);
+})->name("adminBack");
 //add student
 Route::get('/addStudent', [StudentController::class, 'showAddForm'])->name('students.add.form');
 Route::post('/addStudent', [StudentController::class, 'addStudent'])->name('students.add');
@@ -76,7 +81,7 @@ Route::get('/addRoom', [RoomController::class, 'showAddRoomForm'])->name('rooms.
 Route::post('/rooms/add', [RoomController::class, 'store'])->name('rooms.add');
 
 Route::get('/rooms/manage', [RoomController::class, 'manageRooms'])->name('rooms.manage');
-Route::delete('/rooms/{id}', [RoomController::class, 'delete'])->name('rooms.destroy');
+Route::post('/rooms/{id}', [RoomController::class, 'status'])->name('rooms.destroy');
 Route::get('/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
 Route::post('/rooms/update/{id}', [RoomController::class, 'update'])->name('rooms.update');
 
@@ -109,7 +114,6 @@ Route::post('/contact', [IndexController::class, 'store'])->name('contact.store'
 // Route::get('/contact', [ContactController::class, 'contact'])->name('contact.form');
 // Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-
 //get student
 Route::get('/get-students/{userId}', [StudentController::class, 'getStudents'])->name('getStudents');
 
@@ -135,6 +139,8 @@ Route::get('/hostelFee', [ProfileController::class, 'hostel'])->middleware(check
 
 Route::get('/serviceReport', [ProfileController::class, 'service'])->middleware(checkuser::class);
 Route::post('/store', [ProfileController::class, 'store'])->name('store');
+
+Route::post('/update-service-status', [ProfileController::class, 'updateServiceStatus'])->name('updateServiceStatus');
 
 // upload image
 // Route::post('/uploadAvatar', [UserController::class, 'uploadAvatar'])->name('uploadAvatar');
@@ -176,7 +182,9 @@ Route::post('/uploadImage', [UploadImageController::class, 'uploadImage'])->name
 Route::post('/adminRegisterStudent', [StudentController::class, 'adminRegister'])->name('adminregister');
 
 //reminder Fee
-Route::get('/reminderFee', [ProfileController::class, 'reminder'])->middleware(checkuser::class);
+Route::get('/historySR', [ProfileController::class, 'reminder'])->middleware(checkuser::class);
 
 //room rule
 Route::get('/rule', [ProfileController::class, 'ruleRoom'])->middleware(checkuser::class);
+
+Route::get('/design', [IndexController::class, 'design']);

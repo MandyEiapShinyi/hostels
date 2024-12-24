@@ -88,51 +88,80 @@
         </div>
       </div>
       <div class="row">
+        
         @foreach($rooms as $room)
-            <div class="col-lg-4 col-md-6">
+        {{-- <h3>{{ $room->address->address_name }}</h3> --}}
+            {{-- <div class="col-lg-4 col-md-6">
                 <div class="item">
                     <!-- Display room image -->
                     <img src="{{ asset('storage/' . $room->image) }}" class="imgsize" alt="{{ $room->room_name }}">
-
+                                  
                     <!-- Display room name or category -->
-                    <span class="category">{{ $room->room_name }}</span>
-    
+                    <span>{{ $room->room_name }}</span>
+
                     <!-- Display room fee -->
-                    <h6>Rm {{ $room->room_fee }}</h6><br><br>
-    
-                    <div>
-                        <!-- Button to open the modal -->
-                        <button class="room-button" onclick="openModal('{{ $room->id }}')">Visit</button>
+                    <h6>Rm {{ $room->room_fee }}</h6>
+
+                    <!-- Back of the card -->
+                    <div class="text-behind">
+                        <p>{{ $room->details }}</p>
                     </div>
-                </div>
+                  </div>      
+              </div> --}}
+              <div class='col-lg-4 col-md-6'>
+                <div class="imgdisplay" style="width: 18rem;">
+                  <div class='flip-card'>
+                    <div class='flip-card-inner'>
+                      <div class='flip-card-front'>
+                        <img src="{{ asset('storage/' . $room->image) }}" style="height: 250px;width: 360px" class="imgsize" alt="{{ $room->room_name }}">
+                        {{-- <img src="assets/images/room11.jpg" class="imgsize" alt=""><br><br> --}}
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        </div>
+                      </div>
+                      <div class='flip-card-back' style="position: relative; overflow: hidden;">
+                        <!-- Background Div -->
+                        <div style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: lightgrey;
+                            filter: blur(8px);
+                            background-size: cover;
+                            background-position: center;
+                            z-index: -1; /* Ensure the background stays behind the content */
+                        "></div>
+                    
+                        <!-- Content Div (kept clear) -->
+                        <div style="position: relative; padding: 20px;">
+                            <p><b>Room Details :</b> {{ $room->details }}</p>
+                            <p><b>Room Address :</b> {{ $room->address->address_name }} {{ $room->address->address }}</p>
+                        </div>
+                    </div>
+                    
+                      </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                    {{-- <span class="ftx">Hostel 1</span> --}}
+                    <span>{{ $room->room_name }}</span>
+                    <h6 style="margin-right: -65px; color: #ea232a;">Rm {{ $room->room_fee }}</h6>
+                    {{-- <h6 style="margin-right: -65px; color: #ea232a;">RM 200</h6> --}}
+                  </div>
+              </div>
             </div>
         @endforeach
-    </div>
-          {{-- <div class="col-lg-4 col-md-6">
-          <div class="item">
-            <img src="assets/images/room6.jpeg" class="imgsize" alt=""></a>
-            <span class="category">Hostel 6</span>
-            <h6>Rm 200</h6><br><br>
-            <div>
-              <button class="room-button" onclick="openModal('room6')">Visit</button>
-            </div>
-          </div> --}}
+          
         </div>
       </div>
     </div>
   </div>
+  <br></br>
+  <button type="button" class="btn buttonx" style="margin-left: 720px;" onclick="window.location.href='{{ url('/design') }}';">View More</button>
   
-<!-- Modal Structure -->
-<div id="imageModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <img id="modalImage" class="modal-image" src="" alt="">
-    <div class="modal-controls">
-    </div>
-  </div>
-  <span class="close" onclick="closeModal()">&times;</span>
-</div>
 
-<!-- JavaScript -->
+  <br><br><br><br>
 <script>
 let currentImageIndex = 0;
 let currentHostel = ''; 
@@ -283,65 +312,123 @@ document.getElementById('imageModal').onclick = function(event) {
 </section>
 
 <style>
-        .carousel-inner {
-            transform: none;
-        }
+    .ftx {
+      background-color: #ffe9ea; 
+      border-radius: 6px; 
+      padding: 5px; 
+      font-size: 16px;
+    }
+    .carousel-inner {
+      transform: none;
+    }
+    .carousel-item {
+      transform: none !important;
+    }
+    .testimonial-content {
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
+    }
 
-        .carousel-item {
-            transform: none !important;
-        }
+    .carousel-item.active .testimonial-content {
+      transform: translateX(0);
+    }
+    .green-alert {
+      background-color: #b7e0b8;
+      color: black;
+      padding: 15px 25px;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: fixed;
+      top: 60;
+      transform: translateY(20px);
+      right: 20px;
+      z-index: 999999;
+      width: 350px;
+    }
+    .close-alert-btn {
+      background-color: transparent;
+      border: none;
+      color: black;
+      font-size: 16px;
+      position: absolute;
+      /* top: -4px; */
+      right: 15px;
+      cursor: pointer;
+    }
+    .close-alert-btn:hover {
+      color:;
+    }
+    .imgsize {
+      width: 250px;
+      width: 360px;
+      height: auto;
+      cursor: pointer;
+      transition: 2s;
+      /* z-index: 1; */
+      /* margin-left: 1px; */
+      margin-top: 25px;
+    }
+    .item:hover .imgsize {
+      transform: rotateY(180deg);
+      /* color: white; */
+    }
+    .imgsize .text-behind {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: -1;
+      pointer-events: none;
+      font-family: 'Arial', sans-serif;
+    }
+    .flip-card {
+      perspective: 1500px;
+      
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      background-color: whitesmoke;
+      display: flex;
+      gap: 50px;
 
-        .testimonial-content {
-            transform: translateX(100%);
-            transition: transform 0.5s ease-in-out;
-        }
+    }
 
-        /* Slide in both text and author when the carousel item is active */
-        .carousel-item.active .testimonial-content {
-            transform: translateX(0);
-        }
+    .imgdisplay {
 
-        .green-alert {
-            background-color: #b7e0b8;
-            color: black;
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: fixed;
-            top: 60;
-            transform: translateY(20px);
-            right: 20px;
-            z-index: 999999;
-            width: 350px;
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      
 
-        }
-
-        .close-alert-btn {
-            background-color: transparent; /* No background */
-            border: none; /* No border */
-            color: black; /* White 'X' */
-            font-size: 16px; /* Slightly larger 'X' */
-            position: absolute; /* Position the button at the top-right */
-            /* top: -4px; */
-            right: 15px;
-            cursor: pointer; /* Pointer cursor for the button */
-        }
-
-        .close-alert-btn:hover {
-            color:; /* Lighten the color on hover */
-        }
-
-        .imgsize {
-          border-radius: 10px;
-          width: 240px;
-          height: 200px;
-          transition: transform 0.3s ease-in-out;
-        }
-        .item:hover .imgsize {
-          transform: scale(1.1);
-        }
+    }
+    .flip-card-front {
+      background-size: cover;
+      background-position: center;
+    }
+    .flip-card-back {
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotateY(180deg);
+    }
 </style>
 
 <script>
@@ -409,7 +496,7 @@ function initScrollAnimations() {
 
   animatedElements.forEach(element => {
     observer.observe(element);
-  });
+  });
 }
 </script>
 
