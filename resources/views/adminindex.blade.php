@@ -715,11 +715,14 @@
         <div id="users" class="tab-content">
 
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
+                <div id="alertBox" class="green-alert" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
+                <!-- Forget the session after it's displayed -->
+                {{ session()->forget('success') }}
             @endif
+
 
             <h2 class="fontx">Address</h2>
             <p>Choose Address To Add A New Student</p>
@@ -885,11 +888,14 @@
         <div id="data" class="tab-content">
             
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
+                <div id="alertBox" class="green-alert" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
+                <!-- Forget the session after it's displayed -->
+                {{ session()->forget('success') }}
             @endif
+
 
             <p>Manage The Room Address Data</p>
             <a href="/addresses/create" class="btn btn-submit" style="width: 300px;">Add Addresses</a>
@@ -1051,10 +1057,12 @@
         <div id="furniture" class="tab-content"> 
             
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
+                <div id="alertBox" class="green-alert" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
+                <!-- Forget the session after it's displayed -->
+                {{ session()->forget('success') }}
             @endif
 
             <p>Manage The Room Furniture</p>
@@ -1092,11 +1100,13 @@
         <div id="registerstudent" class="tab-content">
             <h5 class="fontx">Register Student</h5>
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
-                </div>
-            @endif
+            <div id="alertBox" class="green-alert" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
+            </div>
+            <!-- Forget the session after it's displayed -->
+            {{ session()->forget('success') }}
+        @endif
 
             
 
@@ -1141,7 +1151,7 @@
 
         <div class="mb-3">
             <label for="phone_number">Phone Number :</label><br>
-            <input class="form-controll" type="text" name="phone_number" id="phone_number" placeholder="0123456789" required><br>
+            <input class="form-controll" type="text" name="phone_number" id="phone_number" placeholder="012-345-6789" required><br>
         </div>
 
         @error('phone_number')
@@ -1205,10 +1215,12 @@
         <div id="fees" class="tab-content">
 
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
+                <div id="alertBox" class="green-alert" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
+                <!-- Forget the session after it's displayed -->
+                {{ session()->forget('success') }}
             @endif
 
             <h2 class="fontx">Student Fees</h2>
@@ -1296,10 +1308,12 @@
         <div id="history" class="tab-content">
 
             @if(session('success'))
-                <div id="custom-alert" class="green-alert" role="alert">
+                <div id="alertBox" class="green-alert" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close-alert-btn" aria-label="Close1" onclick="closeAlert()">X</button>
                 </div>
+                <!-- Forget the session after it's displayed -->
+                {{ session()->forget('success') }}
             @endif
 
             

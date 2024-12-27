@@ -1,4 +1,3 @@
-@include('header')
       @if(session('success'))
       <div id="custom-alert" class="green-alert" role="alert">
           {{ session('success') }}
@@ -94,33 +93,30 @@
         }
 
         .green-alert {
-            background-color: #b7e0b8;
-            color: black;
-            padding: 15px 25px;
-            border-radius: 5px;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 20px;
+            border-radius: 5px; /* Rounded corners */
             font-family: Arial, sans-serif;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: fixed;
-            top: 60;
-            transform: translateY(20px);
-            right: 20px;
-            z-index: 999999;
-            width: 350px;
-            }
-            .close-alert-btn {
-            background-color: transparent;
-            border: none;
-            color: black;
-            font-size: 16px;
-            position: absolute;
-            /* top: -4px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+            position: relative;
+            text-align: center; /* Center text */
+        }
+
+        .close-alert-btn {
+            background-color: transparent; /* No background */
+            border: none; /* No border */
+            color: white; /* White 'X' */
+            font-size: 16px; /* Slightly larger 'X' */
+            position: absolute; /* Position the button at the top-right */
+            top: -3px;
             right: 15px;
-            cursor: pointer;
-            }
-            .close-alert-btn:hover {
-            color:;
-            }
+            cursor: pointer; /* Pointer cursor for the button */
+        }
+
+        .close-alert-btn:hover {
+            color: #ccc; /* Lighten the color on hover */
+        }
 
         /* Media query for mobile responsiveness */
         @media (max-width: 768px) {

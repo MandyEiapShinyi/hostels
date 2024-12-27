@@ -220,7 +220,7 @@
             <div>
                 <div class="tab"><a href="/userProfile" onclick="reloadPage()">Profile</a></div>
                 <div class="tab active"><a href="/roomInformation" onclick="reloadPage()">Room Information</a></div>
-                <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Hostel Fee</a></div>
+                <div class="tab"><a href="/hostelFee" onclick="reloadPage()">Payment Receipt</a></div>
                 {{-- <div class="tab"><a href="/reminderFee" onclick="reloadPage()">Reminder Fee</a></div> --}}
                 <div class="tab"><a href="/rule" onclick="reloadPage()">Rules</a></div>
                 <div class="tab"><a href="/serviceReport" onclick="reloadPage()">Service Report</a></div>

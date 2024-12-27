@@ -135,7 +135,7 @@ class ProfileController extends Controller
             Mail::to("mandyshinyi@gmail.com")->send(new sendmail($user));
     
             // If email was sent successfully, return success response
-            return back()->with('message', 'Email sent successfully!');
+            return back()->with('success', 'Email sent successfully!');
         } catch (\Exception $e) {
             
     
